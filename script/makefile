@@ -1,17 +1,19 @@
-path = /home/intern/Documents/APB5_slave_project/tb/tb.sv
-sim = /home/intern/Documents/APB5_slave_project/sim
-vcd = $(sim)/*.vcd
-transcript = $(sim)/transcript
-wlf = $(sim)/*.wlf
+#pkg_files = ../SV/interface.sv ../SV/sv_package.sv ../SVE/sve_package.sv
+path = ../top/tb.sv
+sim = ../sim/
+log += *.vcd
+log += transcript
+log += *.wlf
 
 all: compile simulate 
 compile:
-	@echo $@ compiling
-	 vlog $(path)
+	@echo "compiling"
+	@vlog $(path)
 simulate:
-	@echo $@ simulating
-	 vopt work.$(path)_top_module -o tb_opt +acc=arn
-	 vsim -asertdebug -msgmode both work.tb_opt
+	@echo "simulating"
+	@vopt work.tb -o tb_opt +acc=arn
+	@vsim -assertdebug -msgmode both work.tb_opt -do "add wave -r /*; run -all"
+	@mv $(log) $(sim)
 clean:
-	rm -f $(sim)
+	rm -rf $(sim)
 
