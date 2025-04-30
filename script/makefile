@@ -1,4 +1,4 @@
-pkg_files = ../testcases/my_pkg.sv ../SV/sv_package.sv
+pkg_files = ../SV/sv_package.sv
 path = ../top/tb.sv
 sim = ../sim/
 log += *.vcd
