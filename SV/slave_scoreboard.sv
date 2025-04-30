@@ -4,12 +4,12 @@
 //----it compare the actual data and expected data for result
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //`include "apb_slave_transaction.sv"
-class slave_scoreboard;
-  apb_slave_transaction t1;
+class slave_scoreboard#(parameter int gdata_width = 32);
   mailbox mon2scb;
-  virtual apb_slave_if vif;
   int count;
-  bit [31:0] golden_memory [1024];
+  logic [gdata_width-1:0] golden_memory [*];
+  apb_slave_transaction scbt;
+  virtual apb_slave_if vif;
 
 
   function new(mailbox mon2scb,virtual apb_slave_if vif);
@@ -20,22 +20,22 @@ class slave_scoreboard;
 
   task run();
     forever begin
-      mon2scb.get(t1);
+      mon2scb.get(scbt);
       count++;	
       $display("[scb] : data received from monitor at %0t count = %0d",$time,count);
-      t1.display();
+      scbt.display();
       $display("________________________________");
-      if(vif.PSEL && vif.PENABLE && vif.PREADY) begin
-	if(t1.PWRITE)begin                             //----if write request than it write in scoreboard memory
-          golden_memory[t1.PADDR] <= t1.PWDATA;
+	if(scbt.PWRITE)begin                             //----if write request than it write in scoreboard memory
+          golden_memory[scbt.PADDR] <= scbt.PWDATA;
 	  $display("[scb] : [%0t] write operation done successfully",$time);
 	end
         else
-	  if(t1.PRDATA == golden_memory[t1.PADDR])     //----if read request than it compare scopreboard memory data with the actual data
-	    $info("[scb] : [%0t]  testcase passed ",$time);
+//here we use case equality operator to compare x or z values because in case
+//of x or z equality operator results in x
+	  if(scbt.PRDATA === golden_memory[scbt.PADDR])     //----if read request than it compare scopreboard memory data with the actual data
+	    $info("[scb] : [%0t]  TESTCASE PASSED at PADDR = %0h,actual_data = %0h,expected_data = %0h",$time,scbt.PADDR,scbt.PRDATA,golden_memory[scbt.PADDR]);
           else
-	    $error("[scb] : [%0t] testcase failed ",$time);
-      end
+	    $info("[scb] : [%0t]  TESTCASE FAILED at PADDR = %0h,actual_data = %0h,expected_data = %0h",$time,scbt.PADDR,scbt.PRDATA,golden_memory[scbt.PADDR]);
     end
   endtask
 endclass
