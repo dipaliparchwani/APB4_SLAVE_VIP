@@ -1,19 +1,33 @@
-#pkg_files = ../SV/interface.sv ../SV/sv_package.sv ../SVE/sve_package.sv
+pkg_files = ../testcases/my_pkg.sv ../SV/sv_package.sv
 path = ../top/tb.sv
 sim = ../sim/
 log += *.vcd
 log += transcript
 log += *.wlf
 
-all: compile simulate 
+override seed ?= 123;
+override testcase ?= sanity
+
+all: compile simulate_wave
+
 compile:
 	@echo "compiling"
-	@vlog $(path)
-simulate:
-	@echo "simulating"
+	@vlog $(pkg_files) $(path)
+
+simulate: 
+	@echo "simulating with seed = $(seed) and testcase = $(testcase)"
 	@vopt work.tb -o tb_opt +acc=arn
-	@vsim -assertdebug -msgmode both work.tb_opt -do "add wave -r /*; run -all"
+	@vsim -assertdebug -msgmode both work.tb_opt -do "run -all"
 	@mv $(log) $(sim)
+
+
+simulate_wave:
+	@echo "simulating with seed = $(seed) and testcase = $(testcase)"
+	@vopt work.tb -o tb_opt +acc=arn
+	@vsim -assertdebug -msgmode both work.tb_opt  $(testcase) $(seed) -do "add wave -r /*; run -all"
+	@mv $(log) $(sim)
+
 clean:
+	rm -rf work
 	rm -rf $(sim)
 
