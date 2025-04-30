@@ -8,13 +8,13 @@
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class apb_slave_monitor;
   mailbox mon2scb;
-  virtual apb_slave_if vif;
+  virtual apb_slave_if vif;  //if we not declared as virtual then we get syntax error like if it is interface declared as virtual 
   apb_slave_transaction trans;
   function new(virtual apb_slave_if vif,mailbox mon2scb);
     this.vif = vif;
     this.mon2scb = mon2scb;
     trans = new();
-  endfunction
+  endfunctioni
     task run();
       forever begin
 	@(posedge vif.PCLK);

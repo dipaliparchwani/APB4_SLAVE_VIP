@@ -3,7 +3,7 @@
 //----interface
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class apb_slave_driver;
-  apb_slave_config c1;
+  apb_slave_config drvc;
   typedef enum logic [1:0]{IDLE,SETUP,ACCESS}slave_state;
   slave_state ps;
 
@@ -11,7 +11,6 @@ class apb_slave_driver;
 
   function new(virtual apb_slave_if vif);
     this.vif = vif;
-    c1 = new();
     ps = IDLE;
   endfunction
 
@@ -48,9 +47,9 @@ class apb_slave_driver;
 
 	  ACCESS : begin
 	    if(vif.PSEL && vif.PENABLE)begin
-	      if(c1.wait_state)begin         //---if wait state introduced than this block executes otherwise in access phase directly PREADY become high
+	      if(drv_c.wait_state)begin         //---if wait state introduced than this block executes otherwise in access phase directly PREADY become high
 		vif.PREADY <= 0;
-		repeat(c1.no_of_wait_cycles)
+		repeat(drvc.no_of_wait_cycles)
 		  @(posedge vif.PCLK);
 	      end
 	      vif.PREADY <= 1'b1;
@@ -59,23 +58,10 @@ class apb_slave_driver;
 		vif.PSLVERR <= 1'b1;
 	      else
 		vif.PSLVERR <= 1'b0;
-	      if(vif.PWRITE)begin          //----if write request high than it write in memory
-		c1.memory[vif.PADDR] <= vif.PWDATA;
-		@(posedge vif.PCLK);
-		if(vif.PSEL)
-		  ps <= SETUP;
-	        else
-	          ps <= IDLE;
-	      end
-	      else begin                   //----if read request high than it read from memory
-		vif.PRDATA <= c1.memory[vif.PADDR];
-		@(posedge vif.PCLK);
-		if(vif.PSEL)
-		  ps <= SETUP;
-	        else
-		  ps <= IDLE;
-	      end
-	    end
+	      if(vif.PWRITE)          //----if write request high than it write in memory
+		drvc.memory[vif.PADDR] <= vif.PWDATA;
+	      else                    //----if read request high than it read from memory
+		vif.PRDATA <= drvc.memory[vif.PADDR];
 	    else if(vif.PSEL && !vif.PENABLE)
 	      ps <= SETUP;
             else
