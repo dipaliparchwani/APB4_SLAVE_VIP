@@ -1,5 +1,5 @@
 package my_pkg;
-   `include "../SV/apb_slave_config.sv"
-   `include "../SV/apb_slave_transaction.sv"
+   `define addr_width 32
+   `define data_width 32
    `include "testcase1.sv"
 endpackage
