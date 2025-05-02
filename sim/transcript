@@ -12,40 +12,74 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# vsim -assertdebug -msgmode both work.tb_opt "+sanity" "+124" -do "add wave -r /*; run -all" 
-# Start time: 10:54:39 on Apr 30,2025
+# vsim -assertdebug -msgmode both work.tb_opt "+sanity" -sv_seed "+124" "+wait_state=0" "+no_of_wait_cycles=0" -do "add wave -r /*; run -all" 
+# Start time: 19:22:15 on May 02,2025
 # Loading sv_std.std
 # Loading work.apb_slave_if(fast)
-# Loading work.my_pkg(fast)
 # Loading work.file_pkg(fast)
+# Loading work.my_pkg(fast)
+# Loading work.test_pkg(fast)
 # Loading work.tb_sv_unit(fast)
 # Loading work.tb(fast)
 # Loading work.apb_slave_if(fast__2)
-# Loading work.test(fast)
 # add wave -r /*
 #  run -all
+# [gen_before _if] : executes at 0
+# [gen_after_delay] : executes at 2
+# [gen] : executes at 2
 # valid PSTRB
 # valid PSTRB
 # valid PSTRB
+# [drv_IDLE] : [50] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 0,PWDATA = 0,PRDATA = 0,PSLVERR = 0
+# [drv_IDLE] : [70] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 0,PWDATA = 0,PRDATA = 0,PSLVERR = 0
 # valid PSTRB
-# [drv] : [90] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = d5eb2d50,PRDATA = 0,PSLVERR = 0
 # valid PSTRB
+# [drv_IDLE] : [90] : PSEL = 1,PENABLE = 0,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSLVERR = 0
+# [drv_SETUP] : [110] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSLVERR = 0
 # valid PSTRB
-# [mon] : [130] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 0,PADDR = 8,PRDATA = 0,PSLVERR = 0
-# valid PSTRB
+# [mon] : [130] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [drv_ACCESS_WR] : [130] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = x,PSLVERR = 0
+# [drv_ACCESS] : [130] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSLVERR = 0
 # [scb] : data received from monitor at 130 count = 1
-# ** Info: [130] : PWRITE = 0,PSLVERR = 0,PADDR = 8,PWDATA = 8039695a,PRDATA = 0,PSTRB = 0
-#    Time: 130 ns  Scope: file_pkg.apb_slave_transaction.apb_slave_transaction__1.display File: ../SV/apb_slave_transaction.sv Line: 26
+# ** Info: [130] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSTRB = 0
+#    Time: 130 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
 # ________________________________
-# ** Info: [scb] : [130]  testcase passed
-#    Time: 130 ns  Scope: file_pkg.slave_scoreboard.run File: ../SV/slave_scoreboard.sv Line: 35
-# [drv] : [150] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = 8039695a,PRDATA = 0,PSLVERR = 0
-# valid PSTRB
-# valid PSTRB
-# valid PSTRB
-# ** Note: $finish    : ../top/tb.sv(22)
-#    Time: 200 ns  Iteration: 0  Instance: /tb
+# [scb] : [130] write operation done successfully
+# [drv_ACCESS_WR] : [150] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [drv_ACCESS] : [150] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSLVERR = 0
+# [mon] : [150] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [scb] : data received from monitor at 150 count = 2
+# ** Info: [150] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSTRB = 0
+#    Time: 150 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
+# ________________________________
+# [scb] : [150] write operation done successfully
+# [mon] : [170] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [drv_ACCESS_WR] : [170] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [drv_ACCESS] : [170] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSLVERR = 0
+# [scb] : data received from monitor at 170 count = 3
+# ** Info: [170] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSTRB = 0
+#    Time: 170 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
+# ________________________________
+# [scb] : [170] write operation done successfully
+# [drv_ACCESS_WR] : [190] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [drv_ACCESS] : [190] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSLVERR = 0
+# [mon] : [190] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [scb] : data received from monitor at 190 count = 4
+# ** Info: [190] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSTRB = 0
+#    Time: 190 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
+# ________________________________
+# [scb] : [190] write operation done successfully
+# [mon] : [210] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [drv_ACCESS_WR] : [210] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PSLVERR = 0
+# [drv_ACCESS] : [210] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSLVERR = 0
+# [scb] : data received from monitor at 210 count = 5
+# ** Info: [210] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = 5ee92830,PRDATA = 0,PSTRB = 0
+#    Time: 210 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
+# ________________________________
+# [scb] : [210] write operation done successfully
+# ** Note: $finish    : ../top/tb.sv(28)
+#    Time: 220 ns  Iteration: 0  Instance: /tb
 # 1
-# Break at ../top/tb.sv line 22
-# End time: 10:56:31 on Apr 30,2025, Elapsed time: 0:01:52
+# Break at ../top/tb.sv line 28
+# End time: 19:30:18 on May 02,2025, Elapsed time: 0:08:03
 # Errors: 0, Warnings: 0

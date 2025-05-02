@@ -1,5 +1,5 @@
 $date
-	Wed Apr 30 10:54:45 2025
+	Fri May  2 19:22:22 2025
 $end
 $version
 	QuestaSim Version 2021.2_1
@@ -11,15 +11,15 @@ $end
 $scope module tb $end
 $var reg 1 ! PCLK $end
 $var reg 1 " PRESETn $end
-
-$scope module tst $end
 $upscope $end
+
+$scope begin file_pkg $end
 $upscope $end
 
 $scope begin my_pkg $end
 $upscope $end
 
-$scope begin file_pkg $end
+$scope begin test_pkg $end
 $upscope $end
 
 $scope begin tb_sv_unit $end
@@ -31,15 +31,18 @@ $enddefinitions $end
 #0
 $dumpvars
 0!
-0"
+x"
 $end
+#1
+0"
 #10
 1!
 #20
 0!
 #30
-1"
 1!
+#31
+1"
 #40
 0!
 #50
@@ -71,4 +74,8 @@ $end
 #180
 0!
 #190
+1!
+#200
+0!
+#210
 1!
