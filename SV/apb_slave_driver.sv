@@ -9,8 +9,9 @@ class apb_slave_driver;
 
   virtual apb_slave_if vif; //taking interface handle as virtual because class is dynamic and interface is static to bind static with dynamic
 
-  function new(virtual apb_slave_if vif);
+  function new(virtual apb_slave_if vif,apb_slave_config drvc);
     this.vif = vif;
+    this.drvc = drvc;
     ps = IDLE;
   endfunction
 
@@ -30,44 +31,55 @@ class apb_slave_driver;
 	  IDLE : begin
             vif.PREADY <= $urandom;
 	    if(vif.PSEL)
-	      ps <= SETUP;
+	      ps = SETUP;
             else
-	      ps <= IDLE;
+	      ps = IDLE;
+            
+            $display("[drv_IDLE] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.PSEL,vif.PENABLE,vif.PREADY,vif.PWRITE,vif.PADDR,vif.PWDATA,vif.PRDATA,vif.PSLVERR);
           end
 
 	  SETUP : begin
             vif.PREADY <= $urandom;
 	    if(vif.PSEL && vif.PENABLE)
-	      ps <= ACCESS;
+	      ps = ACCESS;
             else if(vif.PSEL && !vif.PENABLE)
-	      ps <= SETUP;
+	      ps = SETUP;
             else
-	      ps <= IDLE;
+	      ps = IDLE;
+            $display("[drv_SETUP] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.PSEL,vif.PENABLE,vif.PREADY,vif.PWRITE,vif.PADDR,vif.PWDATA,vif.PRDATA,vif.PSLVERR);
           end
 
 	  ACCESS : begin
 	    if(vif.PSEL && vif.PENABLE)begin
-	      if(drv_c.wait_state)begin         //---if wait state introduced than this block executes otherwise in access phase directly PREADY become high
+	      if(drvc.wait_state)begin         //---if wait state introduced than this block executes otherwise in access phase directly PREADY become high
 		vif.PREADY <= 0;
 		repeat(drvc.no_of_wait_cycles)
 		  @(posedge vif.PCLK);
 	      end
 	      vif.PREADY <= 1'b1;
 
-	      if(vif.PADDR>c1.depth)       //----this block check for the PSLVERR
+	      if(vif.PADDR>`depth)       //----this block check for the PSLVERR
 		vif.PSLVERR <= 1'b1;
 	      else
 		vif.PSLVERR <= 1'b0;
-	      if(vif.PWRITE)          //----if write request high than it write in memory
+	      if(vif.PWRITE == 1'b1) begin         //----if write request high than it write in memory
 		drvc.memory[vif.PADDR] <= vif.PWDATA;
-	      else                    //----if read request high than it read from memory
+                $display("[drv_ACCESS_WR] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PSLVERR = %0h",$time,vif.PSEL,vif.PENABLE,vif.PREADY,vif.PWRITE,vif.PADDR,drvc.memory[vif.PADDR],vif.PSLVERR);
+	      end
+
+	      else begin                  //----if read request high than it read from memory
 		vif.PRDATA <= drvc.memory[vif.PADDR];
+                $display("[drv_ACCESS_RD] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.PSEL,vif.PENABLE,vif.PREADY,vif.PWRITE,vif.PADDR,drvc.memory[vif.PADDR],vif.PSLVERR);
+	      end
+	      
+	    end
 	    else if(vif.PSEL && !vif.PENABLE)
-	      ps <= SETUP;
+	      ps = SETUP;
             else
-	      ps <= IDLE;
+	      ps = IDLE;
           
-          $display("[drv] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.PSEL,vif.PENABLE,vif.PREADY,vif.PWRITE,vif.PADDR,vif.PWDATA,vif.PRDATA,vif.PSLVERR);
+            $display("[drv_ACCESS] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.PSEL,vif.PENABLE,vif.PREADY,vif.PWRITE,vif.PADDR,vif.PWDATA,vif.PRDATA,vif.PSLVERR);
+	    
 	  end
 
 	endcase
