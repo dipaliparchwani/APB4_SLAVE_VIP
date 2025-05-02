@@ -14,7 +14,7 @@ class apb_slave_monitor;
     this.vif = vif;
     this.mon2scb = mon2scb;
     trans = new();
-  endfunctioni
+  endfunction
     task run();
       forever begin
 	@(posedge vif.PCLK);

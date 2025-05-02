@@ -3,21 +3,26 @@
 //----paralle
 //---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class apb_slave_environment;
-  apb_slave_generator gen;
-  apb_slave_driver drv;
-  apb_slave_monitor mon;
-  slave_scoreboard scb;
-  virtual apb_slave_if vif;
+  apb_slave_config con;    //config class handle
+  apb_slave_generator gen; //generator class handle
+  apb_slave_driver drv;    //driver class handle
+  apb_slave_monitor mon;   //monitor class handle
+  slave_scoreboard scb;    //scoreboard class handle
+  virtual apb_slave_if vif;// interface 
   mailbox mon2scb;
 
   function new(virtual apb_slave_if vif);
     this.vif = vif;
     mon2scb = new();
-    drv = new(vif);
+    con = new();
+    con.wait_state = $value$plusargs("wait_state=%0d",con.wait_state);  //user provide wait_state value 0 or 1 from an argument
+    con.no_of_wait_cycles = $value$plusargs("no_of_wait_cycles = %0d",con.no_of_wait_cycles); // user provide no_of_wait_cycles from an argument if not provide than it take 3 by default
+    drv = new(vif,con);
     mon = new(vif,mon2scb);
     gen = new(vif);
     scb = new(mon2scb,vif);
   endfunction
+
   task main();
     fork
       gen.run();

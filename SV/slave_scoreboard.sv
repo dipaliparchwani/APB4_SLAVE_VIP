@@ -26,7 +26,7 @@ class slave_scoreboard#(parameter int gdata_width = 32);
       scbt.display();
       $display("________________________________");
 	if(scbt.PWRITE)begin                             //----if write request than it write in scoreboard memory
-          golden_memory[scbt.PADDR] <= scbt.PWDATA;
+          golden_memory[scbt.PADDR] = scbt.PWDATA;
 	  $display("[scb] : [%0t] write operation done successfully",$time);
 	end
         else
