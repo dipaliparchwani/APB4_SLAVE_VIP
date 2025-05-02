@@ -1,25 +1,32 @@
 `include "../SV/interface.sv"
 import file_pkg::*;
-`include "../SVE/test.sv"
-
+import test_pkg::*; 
 module tb;
 logic PCLK;
 logic PRESETn;
 apb_slave_if vif(.PCLK(PCLK),.PRESETn(PRESETn));
-test tst(vif);
+test tst;
 initial begin
-	PCLK = 0;
+  tst = new(vif);
+  tst.test_run();
 end
 
 initial begin
-	PRESETn = 0;
-	#30 PRESETn = 1;
+  PCLK = 0;
 end
-always #10 PCLK  = ~PCLK;
+
 initial begin
-	$dumpfile("slave.vcd");
-	$dumpvars;
-	#200 $finish;
+  #1 PRESETn = 0;
+  #30 PRESETn = 1;
 end
+
+always #10 PCLK  = ~PCLK;
+
+initial begin
+  $dumpfile("slave.vcd");
+  $dumpvars;
+  #220 $finish;
+end
+
 endmodule
 
