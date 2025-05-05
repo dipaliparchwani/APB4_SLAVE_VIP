@@ -15,8 +15,12 @@ class apb_slave_environment;
     this.vif = vif;
     mon2scb = new();
     con = new();
-    con.wait_state = $value$plusargs("wait_state=%0d",con.wait_state);  //user provide wait_state value 0 or 1 from an argument
-    con.no_of_wait_cycles = $value$plusargs("no_of_wait_cycles = %0d",con.no_of_wait_cycles); // user provide no_of_wait_cycles from an argument if not provide than it take 3 by default
+    $value$plusargs("wait_state=%0d",con.wait_state);
+    $display("[wait_state] : %0d",con.wait_state);
+    //user provide wait_state value 0 or 1 from an argument
+    $value$plusargs("no_of_wait_cycles=%0d",con.no_of_wait_cycles);
+    $display("[no_of_wait_cycles] : %0d",con.no_of_wait_cycles);
+    // user provide no_of_wait_cycles from an argument if not provide than it take 3 by default
     drv = new(vif,con);
     mon = new(vif,mon2scb);
     gen = new(vif);

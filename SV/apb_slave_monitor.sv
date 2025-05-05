@@ -44,8 +44,8 @@ class apb_slave_monitor;
 	
         //----	checkers ----//
 	if(!trans.PWRITE) begin
-	  if(trans.PSTRB == 0) $display("valid PSTRB");
-	  else $error("invalid PSTRB");
+	  if(trans.PSTRB != 0)
+	     $error("invalid PSTRB");
 	end
 
 	//PSEL is asserted means that PADDR,PWRITE,PWDATA must be valid

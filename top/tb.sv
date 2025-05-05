@@ -25,7 +25,7 @@ always #10 PCLK  = ~PCLK;
 initial begin
   $dumpfile("slave.vcd");
   $dumpvars;
-  #220 $finish;
+  #390 $finish;
 end
 
 endmodule

@@ -18,6 +18,7 @@ class apb_slave_driver;
 
 
   task run();
+    $display("[wait_state] : %0d,no.of_wait_cycles : %0d",drvc.wait_state,drvc.no_of_wait_cycles);
     forever begin
       @(posedge vif.PCLK);
       if(!vif.PRESETn)begin
@@ -29,7 +30,7 @@ class apb_slave_driver;
       else begin
 	case(ps)
 	  IDLE : begin
-            vif.PREADY <= $urandom;
+           // vif.PREADY <= $urandom;
 	    if(vif.PSEL)
 	      ps = SETUP;
             else
@@ -39,7 +40,7 @@ class apb_slave_driver;
           end
 
 	  SETUP : begin
-            vif.PREADY <= $urandom;
+           // vif.PREADY <= $urandom;
 	    if(vif.PSEL && vif.PENABLE)
 	      ps = ACCESS;
             else if(vif.PSEL && !vif.PENABLE)

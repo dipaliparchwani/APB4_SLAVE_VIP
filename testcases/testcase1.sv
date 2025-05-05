@@ -30,7 +30,9 @@ class base_test;
         case(ps)
           IDLE : begin
             vif.PSEL <= 0;
+	    vif.PENABLE <= 0;
 	    ps = SETUP;
+	    $display("[IDLE_t] :psel = %0h,penable = %0h,pready = %0h, at %0t",vif.PSEL,vif.PENABLE,vif.PREADY,$time);
 	  end
 
           SETUP : begin
@@ -40,19 +42,29 @@ class base_test;
 	      vif.PWDATA <= PWDATA;
 	    vif.PADDR <= PADDR;
 	    ps = ACCESS;
+	    $display("[SETUP_t] :psel = %0h,penable = %0h,pready = %0h, at %0t",vif.PSEL,vif.PENABLE,vif.PREADY,$time); 
 	  end
 
 	  ACCESS : begin
 	    vif.PENABLE <= 1'b1;
-	    if(vif.PREADY == 1'b1) begin
-	      @(posedge vif.PCLK); 
+	    wait(vif.PREADY == 1'b1); //begin
+	      @(posedge vif.PCLK);
 	      vif.PENABLE <= 0;
-	      if(transfer == 1'b1)
+	      $display("[access_t]  :psel = %0h,penable = %0h,pready = %0h, at %0t",vif.PSEL,vif.PENABLE,vif.PREADY,$time);
+	      if(transfer == 1'b1)begin
+	        //vif.PENABLE <= 0;
 	        ps = SETUP;
-              else 
+	      end
+	      else begin
+                //vif.PENABLE <= 0;
+		vif.PSEL <= 0;
 	        ps = IDLE;
-	    end
-            break;
+	      end
+	      break;
+
+	    //end
+	    $display("[ACCESS_end_t]  :psel = %0h,penable = %0h,pready = %0h, at %0t",vif.PSEL,vif.PENABLE,vif.PREADY,$time);
+           // break;
             
 	  end
         endcase
@@ -70,9 +82,10 @@ class sanity_test extends base_test;
 
   task sanity_run();
     trans = new();
+    $display("write task start");
     trans.randomize() with {PADDR == 8; PWRITE == 1;};
     drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,1'b0);
-
+    $display("read task start");
     trans.randomize() with {PADDR == 8; PWRITE == 0;};
     drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,1'b0);
   endtask

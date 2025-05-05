@@ -6,10 +6,8 @@ class apb_slave_generator;
     this.vif = vif;
   endfunction
   task run();
-    $display("[gen_before _if] : executes at %0t",$time);
-    #2;
+    #2;          // delay is given because at 0 time it consider reset value as x and never true if condition
 
-    $display("[gen_after_delay] : executes at %0t",$time);
       if(!vif.PRESETn) begin // when reset come it reset the all signals irrespective of clk
         vif.PSEL <= 0;
         vif.PENABLE <= 0;

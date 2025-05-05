@@ -8,7 +8,7 @@ log += *.wlf
 override seed ?= 123;
 override testcase ?= sanity
 override wait_state ?= 0;
-override no_of_wait_cycles ?= 5;
+override no_of_wait_cycles ?= 0;
 
 all: compile simulate_wave
 
@@ -26,7 +26,7 @@ simulate:
 simulate_wave:
 	@echo "simulating with seed = $(seed) and testcase = $(testcase)"
 	@vopt work.tb -o tb_opt +acc=arn
-	@vsim -assertdebug -msgmode both work.tb_opt  $(testcase) -sv_seed $(seed) $(wait_state) $(no_of_wait_cycles) -do "add wave -r /*; run -all"
+	@vsim  -assertdebug -msgmode both work.tb_opt  $(testcase) -sv_seed $(seed) $(wait_state) $(no_of_wait_cycles) -do "add wave -r /*; run -all"
 	@mv $(log) $(sim)
 
 clean:
