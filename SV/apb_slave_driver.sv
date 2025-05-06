@@ -70,7 +70,9 @@ class apb_slave_driver;
 		vif.slave_cb.PRDATA <= drvc.memory[vif.slave_cb.PADDR];
                 $display("[drv_ACCESS_RD] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,drvc.memory[vif.slave_cb.PADDR],vif.slave_cb.PSLVERR);
 	      end
-	      #1;
+	      //it is mandatory as per spec after completion of transfer drive
+	      //PREADY low at posedge
+	      @(posedge vif.slave_cb);
 	      vif.slave_cb.PREADY <= 0;
 	      
 	    end

@@ -1,5 +1,5 @@
-import file_pkg::*;
-import my_pkg::*;   //this package contains all testcase files
+import file_pkg::*; //this package contain sv dirctory files which are reusable and `define 
+import my_pkg::*;   //this package contains all testcase files and `define
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //----file name : test.sv 
 //----Description : it has handle of environment class and it control the testcases execution
@@ -12,7 +12,9 @@ import my_pkg::*;   //this package contains all testcase files
 class test;
   virtual apb_slave_if vif;
   apb_slave_environment env;             //environment class handle 
-  sanity_test st;                        //sanity_test class handle
+  sanity_test st; 
+  sanity_pro_test stp;
+  //sanity_test class handle
   function new(virtual apb_slave_if vif);
     this.vif = vif;
     env = new(vif);
@@ -24,6 +26,12 @@ class test;
 	    st = new(vif);
 	    st.sanity_run();
 	  end
+
+	  else if($test$plusargs("sanity_pro"))begin //if we provide sanity_pro from an argument then it run sanity_pro testcase
+	    stp = new(vif);
+            stp.sanity_pro_run();
+	  end
+
   endtask
 
   task test_run();                       //it call the env main task and testcase_run task in parallel

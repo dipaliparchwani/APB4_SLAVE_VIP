@@ -18,6 +18,7 @@ class apb_slave_monitor;
     task run();
       forever begin
 	@(posedge vif.monitor_cb);
+	//when write request then it sample below signals
 	if(vif.monitor_cb.PWRITE && vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin //----when write request than executes
           trans.PWDATA = vif.monitor_cb.PWDATA;
        	  trans.PSLVERR = vif.monitor_cb.PSLVERR;
@@ -27,7 +28,8 @@ class apb_slave_monitor;
 	  mon2scb.put(trans);
 
 	end
-
+         
+	//when read request then it sample below signals
 	else if(!vif.monitor_cb.PWRITE && vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin  //----when read request than executes
        	  trans.PSLVERR = vif.monitor_cb.PSLVERR;
 	  trans.PADDR = vif.monitor_cb.PADDR; 
@@ -71,3 +73,5 @@ class apb_slave_monitor;
     endtask
 endclass
 
+//driving means putting values on an interface
+//sampling means taking values from an interface

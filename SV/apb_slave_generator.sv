@@ -7,7 +7,7 @@ class apb_slave_generator;
   endfunction
   task run();
     #2;          // delay is given because at 0 time it consider reset value as x and never true if condition
-
+//as a part of slave generator it can not drive master signals
      /* if(!vif.PRESETn) begin // when reset come it reset the all signals irrespective of clk
         vif.slave_cb.PSEL <= 0;
         vif.slave_cb.PENABLE <= 0;

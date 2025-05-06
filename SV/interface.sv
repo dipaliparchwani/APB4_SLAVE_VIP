@@ -10,18 +10,22 @@ interface apb_slave_if #(parameter int addr_width = 32, data_width = 32)(input l
   logic PSLVERR;
 
   clocking slave_cb @(posedge PCLK);
-    default input #0 output #0;
+//if we write #0 or #1 in both case we get ynchronization
+//but i think #0 is good because we can check values on posedge or negedge
+//if we not use default line ten it act as #0 delay
+
+    //default input #0 output #0;
     input PADDR,PSEL,PENABLE,PWRITE,PWDATA;
     output PRDATA,PREADY,PSLVERR;
   endclocking:slave_cb
 
   clocking monitor_cb @(posedge PCLK);
-    default input #0;
+    //default input #0;
     input PENABLE,PWRITE,PSEL,PWDATA,PADDR,PREADY,PRDATA,PSLVERR;
   endclocking:monitor_cb
 
   clocking master_cb @(posedge PCLK);
-    default input #0 output #0;
+    //default input #0 output #0;
     input PRDATA,PREADY,PSLVERR;
     output PSEL,PENABLE,PWRITE,PWDATA,PADDR;
   endclocking
