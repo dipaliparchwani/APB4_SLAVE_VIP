@@ -13,7 +13,7 @@
 # //  18 U.S.C. Section 1905.
 # //
 # vsim -assertdebug -msgmode both work.tb_opt "+sanity" -sv_seed "+400" "+wait_state=0" "+no_of_wait_cycles=0" -do "add wave -r /*; run -all" 
-# Start time: 18:22:07 on May 05,2025
+# Start time: 14:53:14 on May 06,2025
 # Loading sv_std.std
 # Loading work.apb_slave_if(fast)
 # Loading work.file_pkg(fast)
@@ -26,6 +26,21 @@
 # Loading work.tb_sv_unit(fast)
 # Loading work.tb(fast)
 # Loading work.apb_slave_if(fast__2)
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PRDATA is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 25
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 27
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 22
 # add wave -r /*
 #  run -all
 # [wait_state] : 0
@@ -33,48 +48,50 @@
 # [wait_state] : 0,no.of_wait_cycles : 0
 # write task start
 # [gen] : executes at 2
-# [IDLE_t] :psel = 0,penable = 0,pready = 0, at 50
 # [drv_IDLE] : [50] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 0,PWDATA = 0,PRDATA = 0,PSLVERR = 0
+# [IDLE_t] :psel = 0,penable = 0,pready = 0, at 50
 # [drv_IDLE] : [70] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 0,PWDATA = 0,PRDATA = 0,PSLVERR = 0
-# [SETUP_t] :psel = 0,penable = 0,pready = 0, at 70
+# [SETUP_t] :psel = 1,penable = 0,pready = 0, at 70
 # [drv_IDLE] : [90] : PSEL = 1,PENABLE = 0,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
 # [drv_SETUP] : [110] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_ACCESS_WR] : [130] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = x,PSLVERR = 0
-# [drv_ACCESS] : [130] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [access_t]  :psel = 1,penable = 1,pready = 1, at 150
+# [drv_ACCESS_WR] : [130] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = x,PSLVERR = 0
+# [drv_ACCESS] : [131] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
+# [access_t]  :psel = 1,penable = 0,pready = 1, at 150
 # read task start
 # [drv_ACCESS_WR] : [150] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PSLVERR = 0
-# [drv_ACCESS] : [150] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
 # [mon] : [150] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PSLVERR = 0
 # [scb] : data received from monitor at 150 count = 1
 # ** Info: [150] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSTRB = 0
 #    Time: 150 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
 # ________________________________
 # [scb] : [150] write operation done successfully
-# [drv_ACCESS] : [170] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
+# [drv_ACCESS] : [151] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
+# [drv_ACCESS] : [170] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
 # [IDLE_t] :psel = 0,penable = 0,pready = 1, at 170
-# [SETUP_t] :psel = 0,penable = 0,pready = 1, at 190
-# [drv_IDLE] : [190] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_IDLE] : [210] : PSEL = 1,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [access_t]  :psel = 1,penable = 1,pready = 1, at 230
-# [drv_SETUP] : [230] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [mon] : [230] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 0,PADDR = 8,PRDATA = 0,PSLVERR = 0
-# [scb] : data received from monitor at 230 count = 2
-# ** Info: [230] : PWRITE = 0,PSLVERR = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSTRB = 0
-#    Time: 230 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
+# [drv_IDLE] : [190] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
+# [SETUP_t] :psel = 1,penable = 0,pready = 0, at 190
+# [drv_IDLE] : [210] : PSEL = 1,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
+# [drv_SETUP] : [230] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
+# [drv_ACCESS_RD] : [250] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 0,PADDR = 8,PRDATA = ca09eb84,PSLVERR = 0
+# [drv_ACCESS] : [251] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
+# [access_t]  :psel = 1,penable = 0,pready = 1, at 270
+# [drv_ACCESS_RD] : [270] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 0,PADDR = 8,PRDATA = ca09eb84,PSLVERR = 0
+# [mon] : [270] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 0,PADDR = 8,PRDATA = ca09eb84,PSLVERR = 0
+# [scb] : data received from monitor at 270 count = 2
+# ** Info: [270] : PWRITE = 0,PSLVERR = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSTRB = 0
+#    Time: 270 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
 # ________________________________
-# ** Info: [scb] : [230]  TESTCASE FAILED at PADDR = 8,actual_data = 0,expected_data = ca09eb84
-#    Time: 230 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 38
-# [drv_ACCESS] : [250] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_IDLE] : [270] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_IDLE] : [290] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_IDLE] : [310] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_IDLE] : [330] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_IDLE] : [350] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_IDLE] : [370] : PSEL = 0,PENABLE = 0,PREADY = 1,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
+# ** Info: [scb] : [270]  TESTCASE PASSED at PADDR = 8,actual_data = ca09eb84,expected_data = ca09eb84
+#    Time: 270 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 36
+# [drv_ACCESS] : [271] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
+# [drv_ACCESS] : [290] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
+# [drv_IDLE] : [310] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
+# [drv_IDLE] : [330] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
+# [drv_IDLE] : [350] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
+# [drv_IDLE] : [370] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
 # ** Note: $finish    : ../top/tb.sv(28)
 #    Time: 390 ns  Iteration: 0  Instance: /tb
 # 1
 # Break at ../top/tb.sv line 28
-# End time: 18:44:16 on May 05,2025, Elapsed time: 0:22:09
-# Errors: 0, Warnings: 2
+# End time: 14:57:42 on May 06,2025, Elapsed time: 0:04:28
+# Errors: 0, Warnings: 7

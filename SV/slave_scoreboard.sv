@@ -9,7 +9,7 @@ class slave_scoreboard#(parameter int gdata_width = 32);
   int count;
   logic [gdata_width-1:0] golden_memory [*];
   apb_slave_transaction scbt;
-  virtual apb_slave_if vif;
+  virtual apb_slave_if.slave vif;
 
 
   function new(mailbox mon2scb,virtual apb_slave_if vif);

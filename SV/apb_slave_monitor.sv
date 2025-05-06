@@ -8,33 +8,32 @@
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class apb_slave_monitor;
   mailbox mon2scb;
-  virtual apb_slave_if vif;  //if we not declared as virtual then we get syntax error like if it is interface declared as virtual 
+  virtual apb_slave_if.monitor vif;  //if we not declared as virtual then we get syntax error like if it is interface declared as virtual 
   apb_slave_transaction trans;
-  function new(virtual apb_slave_if vif,mailbox mon2scb);
+  function new(virtual apb_slave_if.monitor vif,mailbox mon2scb);
     this.vif = vif;
     this.mon2scb = mon2scb;
     trans = new();
   endfunction
     task run();
       forever begin
-	@(posedge vif.PCLK);
-	if(vif.PWRITE && vif.PSEL && vif.PENABLE && vif.PREADY) begin //----when write request than executes
-          trans.PWDATA = vif.PWDATA;
-       	  trans.PSLVERR = vif.PSLVERR;
-	  trans.PSTRB = vif.PSTRB;
-	  trans.PADDR = vif.PADDR;
-	  trans.PWRITE = vif.PWRITE;
-	  $display("[mon] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PSLVERR = %0h",$time,vif.PSEL,vif.PENABLE,vif.PREADY,trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSLVERR);
+	@(posedge vif.monitor_cb);
+	if(vif.monitor_cb.PWRITE && vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin //----when write request than executes
+          trans.PWDATA = vif.monitor_cb.PWDATA;
+       	  trans.PSLVERR = vif.monitor_cb.PSLVERR;
+	  trans.PADDR = vif.monitor_cb.PADDR;
+	  trans.PWRITE = vif.monitor_cb.PWRITE;
+	  $display("[mon] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PSLVERR = %0h",$time,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSLVERR);
 	  mon2scb.put(trans);
 
 	end
 
-	else if(!vif.PWRITE && vif.PSEL && vif.PENABLE && vif.PREADY) begin  //----when read request than executes
-       	  trans.PSLVERR = vif.PSLVERR;
-	  trans.PADDR = vif.PADDR; 
-	  trans.PRDATA = vif.PRDATA;
-	  trans.PWRITE = vif.PWRITE;
-	  $display("[mon] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.PSEL,vif.PENABLE,vif.PREADY,trans.PWRITE,trans.PADDR,trans.PRDATA,trans.PSLVERR);
+	else if(!vif.monitor_cb.PWRITE && vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin  //----when read request than executes
+       	  trans.PSLVERR = vif.monitor_cb.PSLVERR;
+	  trans.PADDR = vif.monitor_cb.PADDR; 
+	  trans.PRDATA = vif.monitor_cb.PRDATA;
+	  trans.PWRITE = vif.monitor_cb.PWRITE;
+	  $display("[mon] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PRDATA,trans.PSLVERR);
 	  mon2scb.put(trans);
 
 	end
@@ -49,24 +48,24 @@ class apb_slave_monitor;
 	end
 
 	//PSEL is asserted means that PADDR,PWRITE,PWDATA must be valid
-	if(vif.PSEL) begin
+	if(vif.monitor_cb.PSEL) begin
 	  if($isunknown(trans.PADDR) || $isunknown(trans.PWRITE) || $isunknown(trans.PWDATA))
 	    $error("invalid inputs");
         end
 
 	//checker for PENABLE signal
-	if(vif.PENABLE && !vif.PSEL)
+	if(vif.monitor_cb.PENABLE && !vif.monitor_cb.PSEL)
 	  $error("PENABLE asserted without PSEL");
 
         //chcker for PRDATA signal
-	if(vif.PSEL && vif.PENABLE && vif.PREADY) begin
+	if(vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin
 	  if($isunknown(trans.PRDATA))
 	    $error("read data is invalid");
         end
 
 	//checker for PREADY signal
-	if(vif.PSEL && vif.PENABLE)
-	  if($isunknown(vif.PREADY))
+	if(vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE)
+	  if($isunknown(vif.monitor_cb.PREADY))
 	    $error("invalid PREADY signal");
       end
     endtask
