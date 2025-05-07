@@ -14,7 +14,7 @@ all: compile simulate_wave
 
 compile:
 	@echo "compiling"
-	@vlog $(pkg_files) $(path)
+	@vlog $(pkg_files) $(path) +acc +cover
 
 simulate: 
 	@echo "simulating with seed = $(seed) and testcase = $(testcase)"
@@ -26,7 +26,7 @@ simulate:
 simulate_wave:
 	@echo "simulating with seed = $(seed) and testcase = $(testcase)"
 	@vopt work.tb -o tb_opt +acc=arn
-	@vsim  -c -assertdebug -msgmode both work.tb_opt  $(testcase) -sv_seed $(seed) $(wait_state) $(no_of_wait_cycles) -do "add wave -r /*; run -all"
+	@vsim  -c -assertdebug -fsmdebug -coverage -msgmode both work.tb_opt  $(testcase) -sv_seed $(seed) $(wait_state) $(no_of_wait_cycles) -do "add wave -r /*; run -all"
 	@mv $(log) $(sim)
 
 clean:

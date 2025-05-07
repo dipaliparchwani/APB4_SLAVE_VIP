@@ -4,15 +4,16 @@
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class apb_slave_driver;
   apb_slave_config drvc;
-  typedef enum logic [1:0]{IDLE,SETUP,ACCESS}slave_state;
-  slave_state ps,ns;
+  typedef enum logic [1:0] {IDLE,SETUP,ACCESS}slave_state;
+  slave_state ps;
 
   virtual apb_slave_if.slave vif; //taking interface handle as virtual because class is dynamic and interface is static to bind static with dynamic
 
   function new(virtual apb_slave_if.slave vif,apb_slave_config drvc);
     this.vif = vif;
     this.drvc = drvc;
-    ps = IDLE;
+    //vif.ps = IDLE;
+    $cast(vif.ps,0);
   endfunction
 
 
@@ -25,16 +26,19 @@ class apb_slave_driver;
 	vif.slave_cb.PREADY <= 0;
         vif.slave_cb.PRDATA <= 0;
 	vif.slave_cb.PSLVERR <= 0;
-	ps <= IDLE;
+	//vif.ps <= IDLE;
+	$cast(vif.ps,0);
       end
       else begin
-	case(ps)
+	case(vif.ps)
 	  IDLE : begin
            // vif.PREADY <= $urandom;
 	    if(vif.slave_cb.PSEL)
-	      ps <= SETUP;
+	      //vif.ps <= SETUP;
+	      $cast(vif.ps,01);
             else
-	      ps <= IDLE;
+	      //vif.ps <= IDLE;
+	      $cast(vif.ps,0);
             
             $display("[drv_IDLE] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
           end
@@ -42,9 +46,11 @@ class apb_slave_driver;
 	  SETUP : begin
            // vif.PREADY <= $urandom;
 	    if(vif.slave_cb.PSEL && vif.slave_cb.PENABLE)
-	      ps <= ACCESS;
+	      //vif.ps <= ACCESS;
+	      $cast(vif.ps,2);
             else if(vif.slave_cb.PSEL && !vif.slave_cb.PENABLE)
-	      ps <= SETUP;
+	      //vif.ps <= SETUP;
+	      $cast(vif.ps,1);
             $display("[drv_SETUP] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
           end
 
@@ -77,9 +83,11 @@ class apb_slave_driver;
 	      
 	    end
 	    else if(vif.slave_cb.PSEL && !vif.slave_cb.PENABLE)
-	      ps <= SETUP;
+	      //vif.ps <= SETUP;
+	      $cast(vif.ps,1);
             else
-	      ps <= IDLE;
+	      //vif.ps <= IDLE;
+	      $cast(vif.ps,0);
           
             $display("[drv_ACCESS] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
 	    

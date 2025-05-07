@@ -1,3 +1,4 @@
+import file_pkg::*;
 interface apb_slave_if #(parameter int addr_width = 32, data_width = 32)(input logic PCLK,PRESETn);
   logic PSEL;
   logic PWRITE;
@@ -8,11 +9,13 @@ interface apb_slave_if #(parameter int addr_width = 32, data_width = 32)(input l
   logic [data_width-1:0] PRDATA;
   logic PREADY;
   logic PSLVERR;
+  typedef enum logic [1:0]{IDLE,SETUP,ACCESS}state_t;
+  state_t ps;
 
   clocking slave_cb @(posedge PCLK);
 //if we write #0 or #1 in both case we get ynchronization
 //but i think #0 is good because we can check values on posedge or negedge
-//if we not use default line ten it act as #0 delay
+//if we not use default line then it act as #0 delay
 
     //default input #0 output #0;
     input PADDR,PSEL,PENABLE,PWRITE,PWDATA;
@@ -31,7 +34,7 @@ interface apb_slave_if #(parameter int addr_width = 32, data_width = 32)(input l
   endclocking
 
 
-	modport slave (clocking slave_cb,input PCLK,PRESETn);
+	modport slave (clocking slave_cb,input PCLK,PRESETn,output ps);
         modport master(clocking master_cb,input PCLK,PRESETn);
 	modport monitor (clocking monitor_cb,input PCLK,PRESETn);
 

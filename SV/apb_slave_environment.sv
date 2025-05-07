@@ -10,7 +10,8 @@ class apb_slave_environment;
   slave_scoreboard scb;    //scoreboard class handle
   virtual apb_slave_if vif;// interface 
   mailbox mon2scb;
-
+//wait state and wait cycles support provided from an argument hence it is
+//tested various cases by an argument
   function new(virtual apb_slave_if vif);
     this.vif = vif;
     mon2scb = new();

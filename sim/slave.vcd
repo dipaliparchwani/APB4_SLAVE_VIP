@@ -1,5 +1,5 @@
 $date
-	Tue May  6 17:44:32 2025
+	Wed May  7 17:08:49 2025
 $end
 $version
 	QuestaSim Version 2021.2_1
@@ -11,21 +11,6 @@ $end
 $scope module tb $end
 $var reg 1 ! PCLK $end
 $var reg 1 " PRESETn $end
-$upscope $end
-
-$scope begin file_pkg $end
-$upscope $end
-
-$scope begin my_pkg $end
-$upscope $end
-
-$scope begin test_pkg $end
-$upscope $end
-
-$scope begin tb_sv_unit $end
-$upscope $end
-
-$scope begin std $end
 $upscope $end
 $enddefinitions $end
 #0
@@ -112,4 +97,64 @@ $end
 #370
 1!
 #380
+0!
+#390
+1!
+#400
+0!
+#410
+1!
+#420
+0!
+#430
+1!
+#440
+0!
+#450
+1!
+#460
+0!
+#470
+1!
+#480
+0!
+#490
+1!
+#500
+0!
+#510
+1!
+#520
+0!
+#530
+1!
+#540
+0!
+#550
+1!
+#560
+0!
+#570
+1!
+#580
+0!
+#590
+1!
+#600
+0!
+#610
+1!
+#620
+0!
+#630
+1!
+#640
+0!
+#650
+1!
+#660
+0!
+#670
+1!
+#680
 0!
