@@ -11,7 +11,8 @@ import my_pkg::*;   //this package contains all testcase files and `define
 
 class test;
   virtual apb_slave_if vif;
-  apb_slave_environment env;             //environment class handle 
+  apb_slave_environment env;
+  //environment class handle 
   sanity_test st; 
   sanity_pro_test stp;
   //sanity_test class handle
@@ -25,11 +26,13 @@ class test;
 	  if($test$plusargs("sanity")) begin //if we provide sanity from argument then sanity testcase run
 	    st = new(vif);
 	    st.sanity_run();
+	    wait(st.count_t == env.scb.count);
 	  end
 
 	  else if($test$plusargs("sanity_pro"))begin //if we provide sanity_pro from an argument then it run sanity_pro testcase
 	    stp = new(vif);
             stp.sanity_pro_run();
+	    wait(stp.count_t == env.scb.count);
 	  end
 
   endtask
@@ -38,7 +41,8 @@ class test;
     fork
       env.main();
       testcase_run();
-    join
+    join_any
+    $finish;
   endtask
   
 endclass

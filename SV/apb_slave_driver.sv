@@ -40,7 +40,7 @@ class apb_slave_driver;
 	      //vif.ps <= IDLE;
 	      $cast(vif.ps,0);
             
-            $display("[drv_IDLE] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
+            $display("[drv_IDLE] : [%0t] : || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PWDATA = %0h],[PRDATA = %0h],[PSLVERR = %0h] ||",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
           end
 
 	  SETUP : begin
@@ -51,7 +51,7 @@ class apb_slave_driver;
             else if(vif.slave_cb.PSEL && !vif.slave_cb.PENABLE)
 	      //vif.ps <= SETUP;
 	      $cast(vif.ps,1);
-            $display("[drv_SETUP] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
+            $display("[drv_SETUP] : [%0t] : || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PWDATA = %0h],[PRDATA = %0h],[PSLVERR = %0h] ||",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
           end
 
 	  ACCESS : begin
@@ -69,12 +69,12 @@ class apb_slave_driver;
 		vif.slave_cb.PSLVERR <= 1'b0;
 	      if(vif.slave_cb.PWRITE == 1'b1) begin         //----if write request high than it write in memory
 		drvc.memory[vif.slave_cb.PADDR] <= vif.slave_cb.PWDATA;
-                $display("[drv_ACCESS_WR] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,drvc.memory[vif.slave_cb.PADDR],vif.slave_cb.PSLVERR);
+                $display("[drv_ACCESS_WR] : [%0t] : || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PWDATA = %0h],[PSLVERR = %0h] ||",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,drvc.memory[vif.slave_cb.PADDR],vif.slave_cb.PSLVERR);
 	      end
 
 	      else begin                  //----if read request high than it read from memory
 		vif.slave_cb.PRDATA <= drvc.memory[vif.slave_cb.PADDR];
-                $display("[drv_ACCESS_RD] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,drvc.memory[vif.slave_cb.PADDR],vif.slave_cb.PSLVERR);
+                $display("[drv_ACCESS_RD] : [%0t] : || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PRDATA = %0h],[PSLVERR = %0h] ||",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,drvc.memory[vif.slave_cb.PADDR],vif.slave_cb.PSLVERR);
 	      end
 	      //it is mandatory as per spec after completion of transfer drive
 	      //PREADY low at posedge
@@ -89,11 +89,12 @@ class apb_slave_driver;
 	      //vif.ps <= IDLE;
 	      $cast(vif.ps,0);
           
-            $display("[drv_ACCESS] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
+            $display("[drv_ACCESS] : [%0t] : || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PWDATA = %0h],[PRDATA = %0h],[PSLVERR = %0h] ||",$time,vif.slave_cb.PSEL,vif.slave_cb.PENABLE,vif.slave_cb.PREADY,vif.slave_cb.PWRITE,vif.slave_cb.PADDR,vif.slave_cb.PWDATA,vif.slave_cb.PRDATA,vif.slave_cb.PSLVERR);
 	    
 	  end
 
 	endcase
+	  $display("--------------------------------------------------------------------------------------------------------------------");
       end
     end
   endtask

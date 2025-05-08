@@ -1,5 +1,5 @@
 # vsim -c -assertdebug -fsmdebug -coverage -msgmode both work.tb_opt "+sanity" -sv_seed 400 "+wait_state=1" "+no_of_wait_cycles=2" -do "add wave -r /*; run -all" 
-# Start time: 12:19:01 on May 08,2025
+# Start time: 16:06:46 on May 08,2025
 # //  Questa Sim
 # //  Version 2021.2_1 linux May 15 2021
 # //
@@ -19,6 +19,16 @@
 # Loading work.file_pkg(fast)
 # ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$value$plusargs'.
 #    Time: 0 ns  Iteration: 0  Region: /file_pkg::apb_slave_environment::new File: ../SV/apb_slave_environment.sv Line: 19
+# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
+# Cannot lock WLF file: "vsim.wlf"
+#           errno 11: Resource temporarily unavailable.
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: intern  Hostname: Admin  ProcessID: 310106
+#           Attempting to use alternate WLF file "./wlftFRcIs5".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftFRcIs5
 # ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$value$plusargs'.
 #    Time: 0 ns  Iteration: 0  Region: /file_pkg::apb_slave_environment::new File: ../SV/apb_slave_environment.sv Line: 22
 # Loading work.my_pkg(fast)
@@ -85,40 +95,40 @@
 #    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 22
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 22
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 22
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 22
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 22
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
 # ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
 # or another expression.
-#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 22
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
 # add wave -r /*
 #  run -all
 # [wait_state] : 1
@@ -126,51 +136,53 @@
 # [wait_state] : 1,no.of_wait_cycles : 2
 # write task start
 # [gen] : executes at 2
-# [drv_IDLE] : [50] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 0,PWDATA = 0,PRDATA = 0,PSLVERR = 0
-# [IDLE_t] :psel = 0,penable = 0,pready = 0, at 50
-# [drv_IDLE] : [70] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 0,PWDATA = 0,PRDATA = 0,PSLVERR = 0
-# [SETUP_t] :psel = 1,penable = 0,pready = 0, at 70
-# [drv_IDLE] : [90] : PSEL = 1,PENABLE = 0,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_SETUP] : [110] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_ACCESS_WR] : [170] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = x,PSLVERR = 0
-# [drv_ACCESS] : [190] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [mon] : [190] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PSLVERR = 0
-# [access_t]  :psel = 1,penable = 0,pready = 1, at 190
+# [drv_IDLE] : [50] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 0],[PWDATA = 0],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = 0] ||, at 50
+# ----------------------------------------------------------------------------------------------------------
+# [drv_IDLE] : [70] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 0],[PWDATA = 0],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 70
+# ----------------------------------------------------------------------------------------------------------
+# [drv_IDLE] : [90] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [110] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_WR] : [170] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 8],[PWDATA = x],[PSLVERR = 0] ||
+# [drv_ACCESS] : [190] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [190] : [count_m] = {1},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 190
 # read task start
 # [scb] : data received from monitor at 190 count = 1
 # ** Info: [190] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSTRB = 0
 #    Time: 190 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
 # ________________________________
-# [scb] : [190] write operation done successfully
-# [drv_ACCESS] : [210] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [IDLE_t] :psel = 0,penable = 0,pready = 0, at 210
-# [drv_IDLE] : [230] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 1,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [SETUP_t] :psel = 1,penable = 0,pready = 0, at 230
-# [drv_IDLE] : [250] : PSEL = 1,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_SETUP] : [270] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSLVERR = 0
-# [drv_ACCESS_RD] : [330] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 0,PADDR = 8,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_ACCESS] : [350] : PSEL = 1,PENABLE = 1,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [mon] : [350] : PSEL = 1,PENABLE = 1,PREADY = 1,PWRITE = 0,PADDR = 8,PRDATA = ca09eb84,PSLVERR = 0
-# [access_t]  :psel = 1,penable = 0,pready = 1, at 350
+# [scb] : [190] ==> [wr_count_scb] = {1}  write operation done successfully
+# [drv_ACCESS] : [210] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = 0] ||, at 210
+# ----------------------------------------------------------------------------------------------------------
+# [drv_IDLE] : [230] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 230
+# ----------------------------------------------------------------------------------------------------------
+# [drv_IDLE] : [250] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [270] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_RD] : [330] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 8],[PRDATA = ca09eb84],[PSLVERR = 0] ||
+# [drv_ACCESS] : [350] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = ca09eb84],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [350] : [count_m] = {2}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 8],[PRDATA = ca09eb84],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 350
 # [scb] : data received from monitor at 350 count = 2
 # ** Info: [350] : PWRITE = 0,PSLVERR = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSTRB = 0
 #    Time: 350 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
 # ________________________________
-# ** Info: [scb] : [350]  TESTCASE PASSED at PADDR = 8,actual_data = ca09eb84,expected_data = ca09eb84
-#    Time: 350 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 36
-# [drv_ACCESS] : [370] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [390] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [410] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [430] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [450] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [470] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [490] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [510] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [530] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [550] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [570] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# [drv_IDLE] : [590] : PSEL = 0,PENABLE = 0,PREADY = 0,PWRITE = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSLVERR = 0
-# ** Note: $finish    : ../top/tb.sv(28)
-#    Time: 600 ns  Iteration: 0  Instance: /tb
-# End time: 12:19:07 on May 08,2025, Elapsed time: 0:00:06
-# Errors: 0, Warnings: 33
+# ** Info: [scb] : [350]  ==> [rd_count_scb] = {1} ==>>[TESTCASE PASSED] at || {PADDR = 8],[actual_data = ca09eb84],[expected_data = ca09eb84] ||
+#    Time: 350 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 38
+# ** Note: $finish    : ../SVE/test.sv(45)
+#    Time: 350 ns  Iteration: 4  Instance: /tb
+# End time: 16:06:58 on May 08,2025, Elapsed time: 0:00:12
+# Errors: 0, Warnings: 35

@@ -5,6 +5,7 @@ import file_pkg::*;
 //----verify protocol is work perfect or not
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class base_test;
+  int count_t;
   virtual apb_slave_if.master vif;
   typedef enum logic [1:0]{IDLE,SETUP,ACCESS}state;
   state ps = IDLE;
@@ -32,7 +33,7 @@ class base_test;
             vif.master_cb.PSEL <= 0;
 	    vif.master_cb.PENABLE <= 0;
 	    ps <= SETUP;
-	    $display("[IDLE_t] :psel = %0h,penable = %0h,pready = %0h, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time);
+	    $display("[IDLE_t] :|| [psel = %0h],[penable = %0h],[pready = %0h] ||, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time);
 	  end
 
           SETUP : begin
@@ -43,7 +44,7 @@ class base_test;
 	      vif.master_cb.PWDATA <= PWDATA;
 	    vif.master_cb.PADDR <= PADDR;
 	    ps <= ACCESS;
-	    $display("[SETUP_t] :psel = %0h,penable = %0h,pready = %0h, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time); 
+	    $display("[SETUP_t] : || [psel = %0h],[penable = %0h],[pready = %0h] ||, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time); 
 	  end
 
 	  ACCESS : begin
@@ -58,24 +59,21 @@ class base_test;
 	      @(posedge vif.master_cb);
             end while(vif.master_cb.PREADY == 0); // loop rotate until condition is true
 	    vif.master_cb.PENABLE <= 0;
-	    $display("[access_t]  :psel = %0h,penable = %0h,pready = %0h, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time);
+	    $display("[access_t]  : || [psel = %0h],[penable = %0h],[pready = %0h] ||, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time);
 	    if(transfer == 1'b1)begin
-	      //vif.PENABLE <= 0;
 	      ps <= SETUP;
 	    end
 	    else begin
-                //vif.PENABLE <= 0;
 	      vif.master_cb.PSEL <= 0;
 	      ps <= IDLE;
 	    end
 	    break;
 
-	    //end
-	    $display("[ACCESS_end_t]  :psel = %0h,penable = %0h,pready = %0h, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time);
-           // break;
+	    $display("[ACCESS_end_t]  : || [psel = %0h],[penable = %0h],[pready = %0h] ||, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time);
             
 	  end
         endcase
+        $display("----------------------------------------------------------------------------------------------------------");
       end
     end
     endtask
@@ -91,13 +89,16 @@ class sanity_test extends base_test;
 
 
   task sanity_run();
+    count_t = 0;
     trans = new();
     $display("write task start");
     trans.randomize() with {PADDR == 8; PWRITE == 1;};
     drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,1'b0);
+    count_t++;
     $display("read task start");
     trans.randomize() with {PADDR == 8; PWRITE == 0;};
     drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,1'b0);
+    count_t++;
   endtask
 endclass
 
@@ -111,12 +112,15 @@ class sanity_pro_test extends base_test;
   endfunction
 
   task sanity_pro_run();
+    count_t = 0;
     trans = new();
     $display("write task start");
     trans.randomize() with {PADDR == 10; PWRITE == 1;};
     drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,1'b1);
+    count_t++;
     $display("read task start");
     trans.randomize() with {PADDR == 10; PWRITE == 0;};
     drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,1'b0);
+    count_t++;
   endtask
 endclass

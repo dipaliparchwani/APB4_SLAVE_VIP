@@ -8,6 +8,7 @@
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class apb_slave_monitor;
   mailbox mon2scb;
+  int count_m;
   virtual apb_slave_if.monitor vif;  //if we not declared as virtual then we get syntax error like if it is interface declared as virtual 
   apb_slave_transaction trans;
   function new(virtual apb_slave_if.monitor vif,mailbox mon2scb);
@@ -24,8 +25,9 @@ class apb_slave_monitor;
        	  trans.PSLVERR = vif.monitor_cb.PSLVERR;
 	  trans.PADDR = vif.monitor_cb.PADDR;
 	  trans.PWRITE = vif.monitor_cb.PWRITE;
-	  $display("[mon] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PWDATA = %0h,PSLVERR = %0h",$time,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSLVERR);
 	  mon2scb.put(trans);
+	  count_m++;
+	  $display("[mon] : [%0t] : [count_m] = {%0d},|| [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PWDATA = %0h],[PSLVERR = %0h] ||",$time,count_m,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSLVERR);
 
 	end
          
@@ -35,8 +37,9 @@ class apb_slave_monitor;
 	  trans.PADDR = vif.monitor_cb.PADDR; 
 	  trans.PRDATA = vif.monitor_cb.PRDATA;
 	  trans.PWRITE = vif.monitor_cb.PWRITE;
-	  $display("[mon] : [%0t] : PSEL = %0h,PENABLE = %0h,PREADY = %0h,PWRITE = %0h,PADDR = %0h,PRDATA = %0h,PSLVERR = %0h",$time,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PRDATA,trans.PSLVERR);
 	  mon2scb.put(trans);
+	  count_m++;
+	  $display("[mon] : [%0t] : [count_m] = {%0d}, || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PRDATA = %0h],[PSLVERR = %0h] ||",$time,count_m,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PRDATA,trans.PSLVERR);
 
 	end
 
