@@ -1,5 +1,5 @@
-# vsim -c -assertdebug -fsmdebug -coverage -msgmode both work.tb_opt "+sanity" -sv_seed 400 "+wait_state=1" "+no_of_wait_cycles=2" -do "add wave -r /*; run -all" 
-# Start time: 16:48:17 on May 08,2025
+# vsim -c -assertdebug -fsmdebug -coverage -msgmode both work.tb_opt "+sanity" -sv_seed 400 "+wait_state=1" "+no_of_wait_cycles=2" "+freq=70" -do "add wave -r /*; run -all" 
+# Start time: 18:55:44 on May 08,2025
 # //  Questa Sim
 # //  Version 2021.2_1 linux May 15 2021
 # //
@@ -121,61 +121,63 @@
 #    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
 # add wave -r /*
 #  run -all
+# ** Info: freq = 70.00 MHz, clk_period = 14.29 ns
+#    Time: 0 ns  Scope: tb File: ../top/tb.sv Line: 19
 # [wait_state] : 1
 # [no_of_wait_cycles] : 2
 # [wait_state] : 1,no.of_wait_cycles : 2
 # write task start
 # [gen] : executes at 2
-# [drv_IDLE] : [50] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 0],[PWDATA = 0],[PRDATA = 0],[PSLVERR = 0] ||
+# [drv_IDLE] : [35] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 0],[PWDATA = 0],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = 0] ||, at 50
+# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = 0] ||, at 35
 # ----------------------------------------------------------------------------------------------------------
-# [drv_IDLE] : [70] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 0],[PWDATA = 0],[PRDATA = 0],[PSLVERR = 0] ||
+# [drv_IDLE] : [49] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 0],[PWDATA = 0],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 70
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 49
 # ----------------------------------------------------------------------------------------------------------
-# [drv_IDLE] : [90] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# [drv_IDLE] : [63] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = f75cf79f],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [drv_SETUP] : [110] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# [drv_SETUP] : [77] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = f75cf79f],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [drv_ACCESS_WR] : [170] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 8],[PWDATA = x],[PSLVERR = 0] ||
-# [drv_ACCESS] : [190] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# [drv_ACCESS_WR] : [119] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 8],[PWDATA = x],[PSLVERR = 0] ||
+# [drv_ACCESS] : [133] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = f75cf79f],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [mon] : [190] : [count_m] = {1},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PSLVERR = 0] ||
-# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 190
+# [mon] : [133] : [count_m] = {1},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 8],[PWDATA = f75cf79f],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 133
 # read task start
-# [scb] : data received from monitor at 190 count = 1
-# ** Info: [190] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = 0,PSTRB = 0
-#    Time: 190 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
+# [scb] : data received from monitor at 133 count = 1
+# ** Info: [133] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = f75cf79f,PRDATA = 0,PSTRB = 0
+#    Time: 133 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
 # ________________________________
-# [scb] : [190] ==> [wr_count_scb] = {1}  write operation done successfully
-# [drv_ACCESS] : [210] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# [scb] : [133] ==> [wr_count_scb] = {1}  write operation done successfully
+# [drv_ACCESS] : [147] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = f75cf79f],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = 0] ||, at 210
+# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = 0] ||, at 147
 # ----------------------------------------------------------------------------------------------------------
-# [drv_IDLE] : [230] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# [drv_IDLE] : [161] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 8],[PWDATA = f75cf79f],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 230
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 161
 # ----------------------------------------------------------------------------------------------------------
-# [drv_IDLE] : [250] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# [drv_IDLE] : [175] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = f75cf79f],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [drv_SETUP] : [270] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = 0],[PSLVERR = 0] ||
+# [drv_SETUP] : [189] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = f75cf79f],[PRDATA = 0],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [drv_ACCESS_RD] : [330] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 8],[PRDATA = ca09eb84],[PSLVERR = 0] ||
-# [drv_ACCESS] : [350] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = ca09eb84],[PRDATA = ca09eb84],[PSLVERR = 0] ||
+# [drv_ACCESS_RD] : [231] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 8],[PRDATA = f75cf79f],[PSLVERR = 0] ||
+# [drv_ACCESS] : [245] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 8],[PWDATA = f75cf79f],[PRDATA = f75cf79f],[PSLVERR = 0] ||
 # --------------------------------------------------------------------------------------------------------------------
-# [mon] : [350] : [count_m] = {2}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 8],[PRDATA = ca09eb84],[PSLVERR = 0] ||
-# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 350
-# [scb] : data received from monitor at 350 count = 2
-# ** Info: [350] : PWRITE = 0,PSLVERR = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSTRB = 0
-#    Time: 350 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
+# [mon] : [245] : [count_m] = {2}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 8],[PRDATA = f75cf79f],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 245
+# [scb] : data received from monitor at 245 count = 2
+# ** Info: [245] : PWRITE = 0,PSLVERR = 0,PADDR = 8,PWDATA = f75cf79f,PRDATA = f75cf79f,PSTRB = 0
+#    Time: 245 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
 # ________________________________
 #################################################################################
 ########################  TESTCASE PASSED  ######################################
 #################################################################################
-# ** Info: [scb] : [350]  ==> [rd_count_scb] = {1} TESTCASE PASSED at || {PADDR = 8],[actual_data = ca09eb84],[expected_data = ca09eb84] ||
-#    Time: 350 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 41
+# ** Info: [scb] : [245]  ==> [rd_count_scb] = {1} TESTCASE PASSED at || {PADDR = 8],[actual_data = f75cf79f],[expected_data = f75cf79f] ||
+#    Time: 245 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 41
 # ** Note: $finish    : ../SVE/test.sv(45)
-#    Time: 350 ns  Iteration: 4  Instance: /tb
-# End time: 16:48:24 on May 08,2025, Elapsed time: 0:00:07
+#    Time: 245 ns  Iteration: 4  Instance: /tb
+# End time: 18:55:51 on May 08,2025, Elapsed time: 0:00:07
 # Errors: 0, Warnings: 33
