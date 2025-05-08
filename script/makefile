@@ -9,7 +9,7 @@ override testcase ?= sanity
 override wait_state ?= 0
 override no_of_wait_cycles ?= 3
 
-log_dir = $(sim)/$(seed)_$(testcase)
+log_dir = $(sim)/$(seed)_$(testcase)_$(wait_state)_$(no_of_wait_cycles)
 
 all: compile simulate
 
