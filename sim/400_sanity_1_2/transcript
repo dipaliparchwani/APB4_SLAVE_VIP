@@ -1,5 +1,5 @@
 # vsim -c -assertdebug -fsmdebug -coverage -msgmode both work.tb_opt "+sanity" -sv_seed 400 "+wait_state=1" "+no_of_wait_cycles=2" -do "add wave -r /*; run -all" 
-# Start time: 16:06:46 on May 08,2025
+# Start time: 16:48:17 on May 08,2025
 # //  Questa Sim
 # //  Version 2021.2_1 linux May 15 2021
 # //
@@ -19,16 +19,6 @@
 # Loading work.file_pkg(fast)
 # ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$value$plusargs'.
 #    Time: 0 ns  Iteration: 0  Region: /file_pkg::apb_slave_environment::new File: ../SV/apb_slave_environment.sv Line: 19
-# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
-# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
-# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
-# Cannot lock WLF file: "vsim.wlf"
-#           errno 11: Resource temporarily unavailable.
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: intern  Hostname: Admin  ProcessID: 310106
-#           Attempting to use alternate WLF file "./wlftFRcIs5".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftFRcIs5
 # ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$value$plusargs'.
 #    Time: 0 ns  Iteration: 0  Region: /file_pkg::apb_slave_environment::new File: ../SV/apb_slave_environment.sv Line: 22
 # Loading work.my_pkg(fast)
@@ -180,9 +170,12 @@
 # ** Info: [350] : PWRITE = 0,PSLVERR = 0,PADDR = 8,PWDATA = ca09eb84,PRDATA = ca09eb84,PSTRB = 0
 #    Time: 350 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 18
 # ________________________________
-# ** Info: [scb] : [350]  ==> [rd_count_scb] = {1} ==>>[TESTCASE PASSED] at || {PADDR = 8],[actual_data = ca09eb84],[expected_data = ca09eb84] ||
-#    Time: 350 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 38
+#################################################################################
+########################  TESTCASE PASSED  ######################################
+#################################################################################
+# ** Info: [scb] : [350]  ==> [rd_count_scb] = {1} TESTCASE PASSED at || {PADDR = 8],[actual_data = ca09eb84],[expected_data = ca09eb84] ||
+#    Time: 350 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 41
 # ** Note: $finish    : ../SVE/test.sv(45)
 #    Time: 350 ns  Iteration: 4  Instance: /tb
-# End time: 16:06:58 on May 08,2025, Elapsed time: 0:00:12
-# Errors: 0, Warnings: 35
+# End time: 16:48:24 on May 08,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 33

@@ -34,10 +34,19 @@ class slave_scoreboard#(parameter int gdata_width = 32);
 	  rd_count_scb++;
 //here we use case equality operator to compare x or z values because in case
 //of x or z equality operator results in x
-	  if(scbt.PRDATA === golden_memory[scbt.PADDR])     //----if read request than it compare scopreboard memory data with the actual data
-	    $info("[scb] : [%0t]  ==> [rd_count_scb] = {%0d} ==>>[TESTCASE PASSED] at || {PADDR = %0h],[actual_data = %0h],[expected_data = %0h] ||",$time,rd_count_scb,scbt.PADDR,scbt.PRDATA,golden_memory[scbt.PADDR]);
-          else
-	    $info("[scb] : [%0t] ==> [rd_count_scb] = {%0d}  ==>>[TESTCASE FAILED] at || [PADDR = %0h],[actual_data = %0h],[expected_data = %0h] ||",$time,rd_count_scb,scbt.PADDR,scbt.PRDATA,golden_memory[scbt.PADDR]);
+          if(scbt.PRDATA === golden_memory[scbt.PADDR]) begin   //----if read request than it compare scopreboard memory data with the actual data
+	    $display("#################################################################################");
+	    $display("########################  TESTCASE PASSED  ######################################");
+	    $display("#################################################################################");
+	    $info("[scb] : [%0t]  ==> [rd_count_scb] = {%0d} TESTCASE PASSED at || {PADDR = %0h],[actual_data = %0h],[expected_data = %0h] ||",$time,rd_count_scb,scbt.PADDR,scbt.PRDATA,golden_memory[scbt.PADDR]);
+	  end
+
+	  else begin
+	    $display("##################################################################################");
+            $display("########################  TESTCASE FAILED  #######################################");
+	    $display("##################################################################################");
+	    $info("[scb] : [%0t] ==> [rd_count_scb] = {%0d}  TESTCASE FAILED at || [PADDR = %0h],[actual_data = %0h],[expected_data = %0h] ||",$time,rd_count_scb,scbt.PADDR,scbt.PRDATA,golden_memory[scbt.PADDR]);
+	  end
         end
     end
   endtask
