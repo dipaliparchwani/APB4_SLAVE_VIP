@@ -1,4 +1,3 @@
-import file_pkg::*;
 interface apb_slave_if #(parameter int addr_width = 32, data_width = 32)(input logic PCLK,PRESETn);
   logic PSEL;
   logic PWRITE;
