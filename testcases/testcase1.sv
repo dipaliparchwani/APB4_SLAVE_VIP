@@ -143,3 +143,22 @@ class directed_basic extends base_test;
     end
   endtask
 endclass
+
+//this testcase check the PSLVERR feature by giving out of bound addr range
+
+class error_check extends base_test;
+  apb_slave_transaction trans;
+  function new(virtual apb_slave_if.master vif);
+    super.new(vif);
+  endfunction
+
+  task error_check_run();
+    count_t = 0;
+    trans = new();
+    trans.addr_control.constraint_mode(0);
+    trans.randomize() with {PADDR == 2056; PWRITE == 1;};
+    drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,1'b0);
+    count_t++;
+  endtask
+
+endclass
