@@ -1,0 +1,347 @@
+# vsim -c -assertdebug -fsmdebug -coverage -msgmode both work.tb_opt "+directed_basic" -sv_seed 980 "+wait_state=1" "+no_of_wait_cycles=2" "+freq=70" -do "add wave -r /*; run -all" 
+# Start time: 15:37:36 on May 09,2025
+# //  Questa Sim
+# //  Version 2021.2_1 linux May 15 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.apb_slave_if(fast)
+# Loading work.file_pkg(fast)
+# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$value$plusargs'.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg::apb_slave_environment::new File: ../SV/apb_slave_environment.sv Line: 19
+# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$value$plusargs'.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg::apb_slave_environment::new File: ../SV/apb_slave_environment.sv Line: 22
+# Loading work.my_pkg(fast)
+# Loading work.test_pkg(fast)
+# Loading work.tb_sv_unit(fast)
+# Loading work.tb(fast)
+# Loading work.apb_slave_if(fast__2)
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PRDATA is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 27
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 28
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 28
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PRDATA is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 27
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 28
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 28
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 28
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PRDATA is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 27
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 28
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PRDATA is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 27
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 28
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PRDATA is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 27
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 26
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 24
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/testcase1.sv Line: 23
+# add wave -r /*
+#  run -all
+# ** Info: freq = 70.00 MHz, clk_period = 14.29 ns
+#    Time: 0 ns  Scope: tb File: ../top/tb.sv Line: 19
+# [wait_state] : 1
+# [no_of_wait_cycles] : 2
+# [wait_state] : 1,no.of_wait_cycles : 2
+# || [PWRITE = 1],[PADDR = 267],[PWDATA = c4017633] ||
+# [gen] : executes at 2
+# [drv_IDLE] : [35] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 0],[PWDATA = 0],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = 0] ||, at 35
+# ----------------------------------------------------------------------------------------------------------
+# [drv_IDLE] : [49] : || [PSEL = 0],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 0],[PWDATA = 0],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 49
+# ----------------------------------------------------------------------------------------------------------
+# [drv_IDLE] : [63] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 267],[PWDATA = c4017633],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [77] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 267],[PWDATA = c4017633],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_WR] : [119] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 267],[PWDATA = x],[PSLVERR = 0] ||
+# [drv_ACCESS] : [133] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 267],[PWDATA = c4017633],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [133] : [count_m] = {1},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 267],[PWDATA = c4017633],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 133
+# || [PWRITE = 0],[PADDR = 267],[PWDATA = c4017633] ||
+# [scb] : data received from monitor at 133 count = 1
+# ** Info: [133] : PWRITE = 1,PSLVERR = 0,PADDR = 267,PWDATA = c4017633,PRDATA = 0,PSTRB = 0
+#    Time: 133 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+# [scb] : [133] ==> [wr_count_scb] = {1}  write operation done successfully
+# [drv_ACCESS] : [147] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 267],[PWDATA = c4017633],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 147
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [161] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 267],[PWDATA = c4017633],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [175] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 267],[PWDATA = c4017633],[PRDATA = 0],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_RD] : [217] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 267],[PRDATA = c4017633],[PSLVERR = 0] ||
+# [drv_ACCESS] : [231] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 267],[PWDATA = c4017633],[PRDATA = c4017633],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [231] : [count_m] = {2}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 267],[PRDATA = c4017633],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 231
+# || [PWRITE = 1],[PADDR = 24f],[PWDATA = c4d69f60] ||
+# [scb] : data received from monitor at 231 count = 2
+# ** Info: [231] : PWRITE = 0,PSLVERR = 0,PADDR = 267,PWDATA = c4017633,PRDATA = c4017633,PSTRB = 0
+#    Time: 231 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+#################################################################################
+########################  TESTCASE PASSED  ######################################
+#################################################################################
+# ** Info: [scb] : [231]  ==> [rd_count_scb] = {1} TESTCASE PASSED at || {PADDR = 267],[actual_data = c4017633],[expected_data = c4017633] ||
+#    Time: 231 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 41
+# [drv_ACCESS] : [245] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 267],[PWDATA = c4017633],[PRDATA = c4017633],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 245
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [259] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 24f],[PWDATA = c4d69f60],[PRDATA = c4017633],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [273] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 24f],[PWDATA = c4d69f60],[PRDATA = c4017633],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_WR] : [315] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 24f],[PWDATA = x],[PSLVERR = 0] ||
+# [drv_ACCESS] : [329] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 24f],[PWDATA = c4d69f60],[PRDATA = c4017633],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [329] : [count_m] = {3},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 24f],[PWDATA = c4d69f60],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 329
+# || [PWRITE = 0],[PADDR = 24f],[PWDATA = c4d69f60] ||
+# [scb] : data received from monitor at 329 count = 3
+# ** Info: [329] : PWRITE = 1,PSLVERR = 0,PADDR = 24f,PWDATA = c4d69f60,PRDATA = c4017633,PSTRB = 0
+#    Time: 329 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+# [scb] : [329] ==> [wr_count_scb] = {2}  write operation done successfully
+# [drv_ACCESS] : [343] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 24f],[PWDATA = c4d69f60],[PRDATA = c4017633],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 343
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [357] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 24f],[PWDATA = c4d69f60],[PRDATA = c4017633],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [371] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 24f],[PWDATA = c4d69f60],[PRDATA = c4017633],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_RD] : [413] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 24f],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# [drv_ACCESS] : [427] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 24f],[PWDATA = c4d69f60],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [427] : [count_m] = {4}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 24f],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 427
+# || [PWRITE = 1],[PADDR = 37c],[PWDATA = f604e1e9] ||
+# [scb] : data received from monitor at 427 count = 4
+# ** Info: [427] : PWRITE = 0,PSLVERR = 0,PADDR = 24f,PWDATA = c4d69f60,PRDATA = c4d69f60,PSTRB = 0
+#    Time: 427 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+#################################################################################
+########################  TESTCASE PASSED  ######################################
+#################################################################################
+# ** Info: [scb] : [427]  ==> [rd_count_scb] = {2} TESTCASE PASSED at || {PADDR = 24f],[actual_data = c4d69f60],[expected_data = c4d69f60] ||
+#    Time: 427 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 41
+# [drv_ACCESS] : [441] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 24f],[PWDATA = c4d69f60],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 441
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [455] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 37c],[PWDATA = f604e1e9],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [469] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 37c],[PWDATA = f604e1e9],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_WR] : [511] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 37c],[PWDATA = x],[PSLVERR = 0] ||
+# [drv_ACCESS] : [525] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = 37c],[PWDATA = f604e1e9],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [525] : [count_m] = {5},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 37c],[PWDATA = f604e1e9],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 525
+# || [PWRITE = 0],[PADDR = 37c],[PWDATA = f604e1e9] ||
+# [scb] : data received from monitor at 525 count = 5
+# ** Info: [525] : PWRITE = 1,PSLVERR = 0,PADDR = 37c,PWDATA = f604e1e9,PRDATA = c4d69f60,PSTRB = 0
+#    Time: 525 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+# [scb] : [525] ==> [wr_count_scb] = {3}  write operation done successfully
+# [drv_ACCESS] : [539] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = 37c],[PWDATA = f604e1e9],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 539
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [553] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 37c],[PWDATA = f604e1e9],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [567] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 37c],[PWDATA = f604e1e9],[PRDATA = c4d69f60],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_RD] : [609] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 37c],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# [drv_ACCESS] : [623] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = 37c],[PWDATA = f604e1e9],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [623] : [count_m] = {6}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 37c],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 623
+# || [PWRITE = 1],[PADDR = e],[PWDATA = 8a4ac715] ||
+# [scb] : data received from monitor at 623 count = 6
+# ** Info: [623] : PWRITE = 0,PSLVERR = 0,PADDR = 37c,PWDATA = f604e1e9,PRDATA = f604e1e9,PSTRB = 0
+#    Time: 623 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+#################################################################################
+########################  TESTCASE PASSED  ######################################
+#################################################################################
+# ** Info: [scb] : [623]  ==> [rd_count_scb] = {3} TESTCASE PASSED at || {PADDR = 37c],[actual_data = f604e1e9],[expected_data = f604e1e9] ||
+#    Time: 623 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 41
+# [drv_ACCESS] : [637] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = 37c],[PWDATA = f604e1e9],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 637
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [651] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = e],[PWDATA = 8a4ac715],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [665] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = e],[PWDATA = 8a4ac715],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_WR] : [707] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = e],[PWDATA = x],[PSLVERR = 0] ||
+# [drv_ACCESS] : [721] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = e],[PWDATA = 8a4ac715],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [721] : [count_m] = {7},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = e],[PWDATA = 8a4ac715],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 721
+# || [PWRITE = 0],[PADDR = e],[PWDATA = 8a4ac715] ||
+# [scb] : data received from monitor at 721 count = 7
+# ** Info: [721] : PWRITE = 1,PSLVERR = 0,PADDR = e,PWDATA = 8a4ac715,PRDATA = f604e1e9,PSTRB = 0
+#    Time: 721 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+# [scb] : [721] ==> [wr_count_scb] = {4}  write operation done successfully
+# [drv_ACCESS] : [735] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = e],[PWDATA = 8a4ac715],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 735
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [749] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = e],[PWDATA = 8a4ac715],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [763] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = e],[PWDATA = 8a4ac715],[PRDATA = f604e1e9],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_RD] : [805] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = e],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# [drv_ACCESS] : [819] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = e],[PWDATA = 8a4ac715],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [819] : [count_m] = {8}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = e],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 819
+# || [PWRITE = 1],[PADDR = d5],[PWDATA = 9f7f82e] ||
+# [scb] : data received from monitor at 819 count = 8
+# ** Info: [819] : PWRITE = 0,PSLVERR = 0,PADDR = e,PWDATA = 8a4ac715,PRDATA = 8a4ac715,PSTRB = 0
+#    Time: 819 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+#################################################################################
+########################  TESTCASE PASSED  ######################################
+#################################################################################
+# ** Info: [scb] : [819]  ==> [rd_count_scb] = {4} TESTCASE PASSED at || {PADDR = e],[actual_data = 8a4ac715],[expected_data = 8a4ac715] ||
+#    Time: 819 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 41
+# [drv_ACCESS] : [833] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = e],[PWDATA = 8a4ac715],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 833
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [847] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = d5],[PWDATA = 9f7f82e],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [861] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = d5],[PWDATA = 9f7f82e],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_WR] : [903] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = d5],[PWDATA = x],[PSLVERR = 0] ||
+# [drv_ACCESS] : [917] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 1],[PADDR = d5],[PWDATA = 9f7f82e],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [917] : [count_m] = {9},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = d5],[PWDATA = 9f7f82e],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 917
+# || [PWRITE = 0],[PADDR = d5],[PWDATA = 9f7f82e] ||
+# [scb] : data received from monitor at 917 count = 9
+# ** Info: [917] : PWRITE = 1,PSLVERR = 0,PADDR = d5,PWDATA = 9f7f82e,PRDATA = 8a4ac715,PSTRB = 0
+#    Time: 917 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+# [scb] : [917] ==> [wr_count_scb] = {5}  write operation done successfully
+# [drv_ACCESS] : [931] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 1],[PADDR = d5],[PWDATA = 9f7f82e],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0] ||, at 931
+# ----------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [945] : || [PSEL = 1],[PENABLE = 0],[PREADY = 0],[PWRITE = 0],[PADDR = d5],[PWDATA = 9f7f82e],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_SETUP] : [959] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = d5],[PWDATA = 9f7f82e],[PRDATA = 8a4ac715],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [drv_ACCESS_RD] : [1001] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = d5],[PRDATA = 9f7f82e],[PSLVERR = 0] ||
+# [drv_ACCESS] : [1015] : || [PSEL = 1],[PENABLE = 1],[PREADY = 0],[PWRITE = 0],[PADDR = d5],[PWDATA = 9f7f82e],[PRDATA = 9f7f82e],[PSLVERR = 0] ||
+# --------------------------------------------------------------------------------------------------------------------
+# [mon] : [1015] : [count_m] = {10}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = d5],[PRDATA = 9f7f82e],[PSLVERR = 0] ||
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 1015
+# [scb] : data received from monitor at 1015 count = 10
+# ** Info: [1015] : PWRITE = 0,PSLVERR = 0,PADDR = d5,PWDATA = 9f7f82e,PRDATA = 9f7f82e,PSTRB = 0
+#    Time: 1015 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 19
+# ________________________________
+#################################################################################
+########################  TESTCASE PASSED  ######################################
+#################################################################################
+# ** Info: [scb] : [1015]  ==> [rd_count_scb] = {5} TESTCASE PASSED at || {PADDR = d5],[actual_data = 9f7f82e],[expected_data = 9f7f82e] ||
+#    Time: 1015 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 41
+# ** Note: $finish    : ../SVE/test.sv(52)
+#    Time: 1015 ns  Iteration: 4  Instance: /tb
+# End time: 15:37:43 on May 09,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 33

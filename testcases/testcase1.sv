@@ -124,3 +124,22 @@ class sanity_pro_test extends base_test;
     count_t++;
   endtask
 endclass
+
+//this is basic directed testcase which done back to back write and read this testcase perform 5 pairs of write and read
+
+class directed_basic extends base_test;
+  apb_slave_transaction trans;
+  function new(virtual apb_slave_if.master vif);
+    super.new(vif);
+  endfunction
+
+  task directed_basic_run();
+    count_t = 0;
+    trans = new();
+    repeat(10) begin
+      trans.randomize();
+      drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,1'b1);
+      count_t++;
+    end
+  endtask
+endclass

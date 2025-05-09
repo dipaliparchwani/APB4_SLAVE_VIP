@@ -15,6 +15,7 @@ class test;
   //environment class handle 
   sanity_test st; 
   sanity_pro_test stp;
+  directed_basic dbt;
   //sanity_test class handle
   function new(virtual apb_slave_if vif);
     this.vif = vif;
@@ -33,6 +34,12 @@ class test;
 	    stp = new(vif);
             stp.sanity_pro_run();
 	    wait(stp.count_t == env.scb.count);
+	  end
+
+	  else if($test$plusargs("directed_basic"))begin
+	    dbt = new(vif);
+	    dbt.directed_basic_run();
+	    wait(dbt.count_t == env.scb.count);
 	  end
 
   endtask
