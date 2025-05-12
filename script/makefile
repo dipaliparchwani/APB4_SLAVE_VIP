@@ -1,24 +1,30 @@
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+################################  MAKEFILE  ##############################################
+#----File Name   : makefile
+#----Description : makefile is used to automate tasks like compile,simulate etc
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Define SystemVerilog package and testbench files
 pkg_files = ../SV/sv_package.sv ../testcases/my_pkg.sv ../SVE/test_pkg.sv
 path = ../top/tb.sv
 sim = ../sim
 log_files = *.vcd transcript *.wlf
-
+# Default simulation parameters, can be overridden from command line
 override wave ?= 0
 override seed ?= 123
 override testcase ?= sanity
 override wait_state ?= 0
 override no_of_wait_cycles ?= 3
 override freq ?= 50   
-
-log_dir = $(sim)/testcase $(testcase)_wait_state $(wait_state)_no_of_wait_cycles $(no_of_wait_cycles)_seed $(seed)
-
+# Directory to save logs, named using simulation parameters
+log_dir = $(sim)/testcase$(testcase)_waitstate$(wait_state)_waitcycles$(no_of_wait_cycles)_seed$(seed) 
+# Default target
 all: compile simulate
-
+# Compilation step
 compile:
 	@echo "Compiling..."
 	@vlib work
 	@vlog $(pkg_files) $(path) 
-
+# Simulation step with or without waveform based on 'wave' variable
 simulate: run_sim
 
 ifeq ($(wave),1)
@@ -40,10 +46,10 @@ run_sim:
 		+freq=$(freq) -do "run -all"
 	@mv $(log_files) $(log_dir) 
 endif
-
+# Clean only the compiled library
 clean:
 	rm -rf work
-
+# Clean compiled library and simulation output
 clean_all:
 	rm -rf work
 	rm -rf $(sim)
