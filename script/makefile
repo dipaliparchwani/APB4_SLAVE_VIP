@@ -10,7 +10,7 @@ override wait_state ?= 0
 override no_of_wait_cycles ?= 3
 override freq ?= 50   
 
-log_dir = $(sim)/$(seed)_$(testcase)
+log_dir = $(sim)/testcase $(testcase)_wait_state $(wait_state)_no_of_wait_cycles $(no_of_wait_cycles)_seed $(seed)
 
 all: compile simulate
 

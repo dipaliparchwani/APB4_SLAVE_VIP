@@ -41,7 +41,7 @@ class test;
 	    wait(st.count_t == env.scb.count);
 	  end
 
-          //if we provide sanity_strb from an argument then sanity_strb testcase run
+          //if we provide sanity_strb from an argument then check_strb testcase run
 	  else if($test$plusargs("check_strb")) begin 
 	    sts = new(vif);
 	    sts.sanity_strb_run();
@@ -55,7 +55,7 @@ class test;
 	    wait(stp.count_t == env.scb.count);
 	  end
 
-          //if we provide sanity_pro_strb from an argument then sanity_pro_strb testcase run
+          //if we provide sanity_pro_strb from an argument then pro_strb_check testcase run
 	  else if($test$plusargs("pro_strb_check"))begin 
 	    stps = new(vif);
             stps.sanity_pro_strb_run();
@@ -69,7 +69,7 @@ class test;
 	    wait(dbt.count_t == env.scb.count);
 	  end
 
-           //if we provide directed_basic_strb from an argument then directed_basic_strb testcase run
+           //if we provide directed_basic_strb from an argument then test_directed_strb testcase run
 	  else if($test$plusargs("test_directed_strb"))begin
 	    dbts = new(vif);
 	    dbts.directed_basic_strb_run();
@@ -90,7 +90,7 @@ class test;
 	    wait(dst.count_t == env.scb.count);
 	  end
 
-	   //if we provide directed_simultaneous_strb from an argument then directed_simultaneous_strb testcase run
+	   //if we provide directed_simultaneous_strb from an argument simultaneous_strb_check testcase run
 	  else if($test$plusargs("simultaneous_strb_check"))begin
 	    dsts = new(vif);
 	    dsts. directed_simultaneous_strb_run();
@@ -111,7 +111,7 @@ class test;
 	    wait(dlt.count_t == env.scb.count);
 	  end
 
-	   //if we provide directed_last_check_strb from an argument then directed_last_check_strb testcase run
+	   //if we provide directed_last_check_strb from an argument then last_check_strb testcase run
 	  else if($test$plusargs("last_check_strb"))begin
 	    dlts = new(vif);
 	    dlts. directed_last_check_strb_run();
