@@ -5,16 +5,16 @@
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class apb_slave_monitor;
   mailbox mon2scb;  //mailbox for Packet send to scoreboard
-  mailbox mon2cov;  //mailbox for Packet send to coverage
   int count_m;      //monitor count
   virtual apb_slave_if.monitor vif;  //if we not declared as virtual then we get syntax error like if it is interface declared as virtual 
   apb_slave_transaction trans;  //transaction class handle
+  apb_slave_coverage cov;
   //new constructor for monitor
-  function new(virtual apb_slave_if.monitor vif,mailbox mon2scb);//,mailbox mon2cov);
+  function new(virtual apb_slave_if.monitor vif,mailbox mon2scb);
     this.vif = vif;
     this.mon2scb = mon2scb;
-    //this.mon2cov = mon2cov;
     trans = new();
+    cov = new(trans);
   endfunction
     //run task of monitor
     task run();
@@ -27,8 +27,8 @@ class apb_slave_monitor;
 	  trans.PADDR = vif.monitor_cb.PADDR;
 	  trans.PWRITE = vif.monitor_cb.PWRITE;
 	  trans.PSTRB = vif.monitor_cb.PSTRB;
+	  cov.cg_apb_slave.sample();
 	  mon2scb.put(trans);
-	 // mon2cov.put(trans);
 	  count_m++;  //increase the count
 	  $display("[mon] : [%0t] : [count_m] = {%0d},|| [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PWDATA = %0h],[PSLVERR = %0h],[PSTRB = %0h] ||",$time,count_m,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSLVERR,trans.PSTRB);
 
@@ -42,8 +42,8 @@ class apb_slave_monitor;
 	  trans.PWRITE = vif.monitor_cb.PWRITE;
 	  trans.PSTRB = vif.monitor_cb.PSTRB;
 	  mon2scb.put(trans);
+	  cov.cg_apb_slave.sample();
 	  count_m++;  //increase the count
-	  //mon2cov.put();
 	  $display("[mon] : [%0t] : [count_m] = {%0d}, || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PRDATA = %0h],[PSLVERR = %0h],[PSTRB = %0h] ||",$time,count_m,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PRDATA,trans.PSLVERR,trans.PSTRB);
 
 	end

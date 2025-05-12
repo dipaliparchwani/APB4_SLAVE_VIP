@@ -9,16 +9,13 @@ class apb_slave_environment;
   apb_slave_driver drv;    //driver class handle
   apb_slave_monitor mon;   //monitor class handle
   slave_scoreboard scb;    //scoreboard class handle
-  //apb_slave_coverage cov;
   virtual apb_slave_if vif;// interface 
   mailbox mon2scb;  //mailbox to send packet
-  //mailbox mon2cov;
 //wait state and wait cycles support provided from an argument hence it is tested various cases by an argument
 //new constructor
   function new(virtual apb_slave_if vif);
     this.vif = vif;
     mon2scb = new();
-    //mon2cov = new();
     con = new();
     $value$plusargs("wait_state=%0d",con.wait_state);
     $display("[wait_state] : %0d",con.wait_state);
@@ -30,7 +27,6 @@ class apb_slave_environment;
     mon = new(vif,mon2scb);//,mon2cov);
     gen = new(vif);
     scb = new(mon2scb,vif);
-    //cov = new(mon2cov);
   endfunction
   //main task of environment
   task main();
@@ -39,7 +35,6 @@ class apb_slave_environment;
       drv.run();
       mon.run();
       scb.run();
-      //cov.run();
     join
   endtask
 endclass
