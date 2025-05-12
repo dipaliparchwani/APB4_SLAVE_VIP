@@ -1,3 +1,8 @@
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//##########################################  PACKAGE  ##########################################
+//----File Name   : sv_package.sv
+//----Description : this packege contains all files which are in SV Directory
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 package file_pkg;
   `define cdata_width 32
   `define depth 1024 
@@ -9,6 +14,7 @@ package file_pkg;
   `include "apb_slave_driver.sv"
   `include "apb_slave_monitor.sv"
   `include "slave_scoreboard.sv"
+ // `include "apb_slave_coverage.sv"
   `include "apb_slave_environment.sv"
 endpackage
 

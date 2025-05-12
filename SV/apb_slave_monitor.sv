@@ -1,21 +1,22 @@
-//`include "apb_slave_transaction.sv" //temp. include to compile this file alone
-//latter not need to include because it all called in env and not need to
-//declare all files in env because env handle is call in test and test have
-//pacckege that include files
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----apb_slave_monitor.sv : it samples the values from an interface 
-//------------------------ : it send the packet to scoreboard
+//##########################  MONITOR CLASS ##############################
+//----File Name   : apb_slave_monitor.sv 
+//----Description : it samples the packet from an interface and send the packet to scoreboard
 //----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class apb_slave_monitor;
-  mailbox mon2scb;
-  int count_m;
+  mailbox mon2scb;  //mailbox for Packet send to scoreboard
+  mailbox mon2cov;  //mailbox for Packet send to coverage
+  int count_m;      //monitor count
   virtual apb_slave_if.monitor vif;  //if we not declared as virtual then we get syntax error like if it is interface declared as virtual 
-  apb_slave_transaction trans;
-  function new(virtual apb_slave_if.monitor vif,mailbox mon2scb);
+  apb_slave_transaction trans;  //transaction class handle
+  //new constructor for monitor
+  function new(virtual apb_slave_if.monitor vif,mailbox mon2scb);//,mailbox mon2cov);
     this.vif = vif;
     this.mon2scb = mon2scb;
+    //this.mon2cov = mon2cov;
     trans = new();
   endfunction
+    //run task of monitor
     task run();
       forever begin
 	@(posedge vif.monitor_cb);
@@ -25,9 +26,11 @@ class apb_slave_monitor;
        	  trans.PSLVERR = vif.monitor_cb.PSLVERR;
 	  trans.PADDR = vif.monitor_cb.PADDR;
 	  trans.PWRITE = vif.monitor_cb.PWRITE;
+	  trans.PSTRB = vif.monitor_cb.PSTRB;
 	  mon2scb.put(trans);
-	  count_m++;
-	  $display("[mon] : [%0t] : [count_m] = {%0d},|| [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PWDATA = %0h],[PSLVERR = %0h] ||",$time,count_m,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSLVERR);
+	 // mon2cov.put(trans);
+	  count_m++;  //increase the count
+	  $display("[mon] : [%0t] : [count_m] = {%0d},|| [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PWDATA = %0h],[PSLVERR = %0h],[PSTRB = %0h] ||",$time,count_m,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSLVERR,trans.PSTRB);
 
 	end
          
@@ -37,9 +40,11 @@ class apb_slave_monitor;
 	  trans.PADDR = vif.monitor_cb.PADDR; 
 	  trans.PRDATA = vif.monitor_cb.PRDATA;
 	  trans.PWRITE = vif.monitor_cb.PWRITE;
+	  trans.PSTRB = vif.monitor_cb.PSTRB;
 	  mon2scb.put(trans);
-	  count_m++;
-	  $display("[mon] : [%0t] : [count_m] = {%0d}, || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PRDATA = %0h],[PSLVERR = %0h] ||",$time,count_m,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PRDATA,trans.PSLVERR);
+	  count_m++;  //increase the count
+	  //mon2cov.put();
+	  $display("[mon] : [%0t] : [count_m] = {%0d}, || [PSEL = %0h],[PENABLE = %0h],[PREADY = %0h],[PWRITE = %0h],[PADDR = %0h],[PRDATA = %0h],[PSLVERR = %0h],[PSTRB = %0h] ||",$time,count_m,vif.monitor_cb.PSEL,vif.monitor_cb.PENABLE,vif.monitor_cb.PREADY,trans.PWRITE,trans.PADDR,trans.PRDATA,trans.PSLVERR,trans.PSTRB);
 
 	end
 
@@ -54,7 +59,7 @@ class apb_slave_monitor;
 
 	//PSEL is asserted means that PADDR,PWRITE,PWDATA must be valid
 	if(vif.monitor_cb.PSEL) begin
-	  if($isunknown(trans.PADDR) || $isunknown(trans.PWRITE) || $isunknown(trans.PWDATA))
+	  if($isunknown(vif.monitor_cb.PADDR) || $isunknown(vif.monitor_cb.PWRITE) || $isunknown(vif.monitor_cb.PWDATA))
 	    $error("invalid inputs");
         end
 
@@ -64,7 +69,7 @@ class apb_slave_monitor;
 
         //chcker for PRDATA signal
 	if(vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin
-	  if($isunknown(trans.PRDATA))
+	  if($isunknown(vif.monitor_cb.PRDATA))
 	    $error("read data is invalid");
         end
 
