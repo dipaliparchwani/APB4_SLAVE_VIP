@@ -10,12 +10,14 @@ class slave_scoreboard#(parameter int gdata_width = 32);
   //--here we take golden memory
   bit [gdata_width-1:0] golden_memory [*];
   apb_slave_transaction scbt;  //transaction class handle
+  apb_slave_config scbc;
   virtual apb_slave_if.slave vif;  //interface handle
 
   //new constructor
-  function new(mailbox mon2scb,virtual apb_slave_if vif);
+  function new(mailbox mon2scb,virtual apb_slave_if vif,apb_slave_config scbc);
     this.mon2scb = mon2scb;
     this.vif = vif;
+    this.scbc = scbc;
     count = 0;
   endfunction
   //run task of scoreboard
@@ -41,7 +43,7 @@ class slave_scoreboard#(parameter int gdata_width = 32);
 	rd_count_scb++;  //increase read count because write oeration
         //here we use case equality operator to compare x or z values because in case
         //of x or z equality operator results in x
-        if(scbt.PRDATA === golden_memory[scbt.PADDR]) begin   //----if read request than it compare scopreboard memory data with the actual data
+        if(scbc.memory[scbt.PADDR] === golden_memory[scbt.PADDR]) begin   //----if read request than it compare scopreboard memory data with the actual data
 	  $display("#################################################################################");
 	  $display("########################  TESTCASE PASSED  ######################################");
 	  $display("#################################################################################");

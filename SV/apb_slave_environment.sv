@@ -26,7 +26,7 @@ class apb_slave_environment;
     drv = new(vif,con);
     mon = new(vif,mon2scb);//,mon2cov);
     gen = new(vif);
-    scb = new(mon2scb,vif);
+    scb = new(mon2scb,vif,con);
   endfunction
   //main task of environment
   task main();

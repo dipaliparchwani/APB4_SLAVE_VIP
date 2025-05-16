@@ -18,6 +18,7 @@ class base_test;
   virtual apb_slave_if.master vif; //virtual interface master clocking block used
   typedef enum logic [1:0]{IDLE,SETUP,ACCESS}state;  //enum for design FSM
   state ps = IDLE;   //initially state is IDLE
+  state ns = IDLE;
 
   function new(virtual apb_slave_if.master vif);  //this is new constructor of base test
     this.vif = vif;
@@ -26,28 +27,46 @@ class base_test;
   //in fsm when we use clk than we use non blocking assignment
   //it is common method for driving master signals
   task drive_run(bit PWRITE,bit[`addr_width-1:0]PADDR,bit[`data_width-1:0]PWDATA,bit[(`data_width/8)-1:0]PSTRB,bit transfer);
-    forever begin
-      @(posedge vif.master_cb);
-      //when reset come then this block executes
-      if(!vif.PRESETn) begin
-	vif.master_cb.PSEL <= 0;
-	vif.master_cb.PENABLE <= 0;
-	vif.master_cb.PADDR <= 0;
-	vif.master_cb.PWDATA <= 0;
-	vif.master_cb.PWRITE <= 0;
-	vif.master_cb.PSTRB <= 0;
-        ps <= IDLE;
+    fork
+      //begin
+      forever begin
+        @(posedge vif.master_cb);
+	//reset logic
+        $display("when reset come then this block executes");
+        if(!vif.PRESETn) begin
+	  vif.master_cb.PSEL <= 0;
+	  vif.master_cb.PENABLE <= 0;
+	  vif.master_cb.PADDR <= 0;
+	  vif.master_cb.PWDATA <= 0;
+	  vif.master_cb.PWRITE <= 0;
+	  vif.master_cb.PSTRB <= 0;
+          ps <= IDLE;
+	  $display("after reset");
+        end
+	//state assignment
+        else begin
+	  $display("before state assignment");
+	  ps <= ns;
+	  $display("after state assignment ps = %0d,ns = %0d at [%0t]",ps,ns,$time);
+        end
+	//loop breaking logic
+        if(ps == ACCESS && vif.master_cb.PREADY == 1'b1) begin
+          $display("after satisfying condition");
+          break;
+          $display("after break");
+        end
+    
       end
-
-      //when active low reset is high then ths block executes
-      else begin
-	//case statement check the state on each posedge and update states and executes code of corresponding state
+      //FSM state switch logic
+      forever begin
+        @(vif.master_cb.PSEL or vif.master_cb.PENABLE or vif.master_cb.PWRITE or vif.master_cb.PWDATA or vif.master_cb.PSTRB or ps or vif.master_cb.PADDR);
+        //@(ps);
         case(ps)
 	  //in IDLE state it drive PSEL low
-          IDLE : begin
+	  IDLE : begin
             vif.master_cb.PSEL <= 0;
 	    vif.master_cb.PENABLE <= 0;
-	    ps <= SETUP;
+	    ns= SETUP;
 	    $display("[IDLE_t] :|| [psel = %0h],[penable = %0h],[pready = %0h] ||, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time);
 	  end
 
@@ -56,11 +75,12 @@ class base_test;
 	    vif.master_cb.PSEL <= 1'b1;
 	    vif.master_cb.PENABLE <= 0;
 	    vif.master_cb.PWRITE <= PWRITE;
-	    if(PWRITE == 1'b1)
+	    if(PWRITE == 1'b1) begin
 	      vif.master_cb.PWDATA <= PWDATA;
+	    end
 	    vif.master_cb.PADDR <= PADDR;
 	    vif.master_cb.PSTRB <= PSTRB;
-	    ps <= ACCESS;
+	    ns = ACCESS;
 	    $display("[SETUP_t] : || [psel = %0h],[penable = %0h],[pready = %0h],[PSTRB = %0h] ||, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,vif.master_cb.PSTRB,$time); 
 	  end
           
@@ -73,21 +93,23 @@ class base_test;
 	    // negedge pready become high than next posedge clk master drive
 	    // penable low 
 	    // in spec it is mandatory all things done at posedge clk
-	    do begin
+	    //do while removed because it by default true once wiithout checking condition
+	    /*do begin
 	      @(posedge vif.master_cb);
-            end while(vif.master_cb.PREADY == 0); // loop rotate until condition is true means until PREADY value is low
+            end while(vif.master_cb.PREADY == 0);*/// loop rotate until condition is true means until PREADY value is low
 	    //when PREADY become high in next clock it drive PENABLE low because it use NBA 
+	    wait(vif.master_cb.PREADY);
 	    vif.master_cb.PENABLE <= 0;
 	    $display("[access_t]  : || [psel = %0h],[penable = %0h],[pready = %0h] ||, at %0t",vif.master_cb.PSEL,vif.master_cb.PENABLE,vif.master_cb.PREADY,$time);
 
 	    //if next transfer then it move to SETUP state in next clock
 	    if(transfer == 1'b1)begin
-	      ps <= SETUP;
+	      ns = SETUP;
 	    end
 	    //if no transfer then it moves to IDLE state and drive PENABLE low in next clock because NBA
 	    else begin
 	      vif.master_cb.PSEL <= 0;
-	      ps <= IDLE;
+	      ns = IDLE;
 	    end
 	    //loop rotate forever hence after complete ACCESS state to stop loop
 	    break;
@@ -96,10 +118,10 @@ class base_test;
             
 	  end
         endcase
-        $display("----------------------------------------------------------------------------------------------------------");
+          $display("----------------------------------------------------------------------------------------------------------");
       end
-    end
-    endtask
+    join
+  endtask
 endclass
 
 //#########################################################################################################################
@@ -121,7 +143,7 @@ class sanity_test extends base_test;
     drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSTRB,1'b0);
     count_t++;  //after calling drive_run method increse the count
     $display("read task start");
-    trans.randomize() with {PADDR == 8; PWRITE == 0; PSTRB == 0;};
+    trans.randomize() with {PADDR == 8; PWRITE == 0; PSTRB == 4'b0;};
     drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSTRB,1'b0);
     count_t++;
   endtask
@@ -223,12 +245,12 @@ class directed_basic extends base_test;
     repeat(5) begin
       trans.rand_mode(1);
       trans.randomize() with {PWRITE == 1; PSTRB == 4'hf;};
-      drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSTRB,1'b1);
+      drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSTRB,1'b0);
       count_t++;  //after calling drive_run method increase the count
       trans.rand_mode(0);
       trans.PWRITE = 0; 
       trans.PSTRB = 4'h0;
-      drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSTRB,1'b1);
+      drive_run(trans.PWRITE,trans.PADDR,trans.PWDATA,trans.PSTRB,1'b0);
       count_t++;
     end
   endtask

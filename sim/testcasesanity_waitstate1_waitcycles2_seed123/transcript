@@ -1,0 +1,177 @@
+# vsim -c -assertdebug -fsmdebug -coverage -msgmode both work.tb_opt "+sanity" "+sv_seed=123" "+wait_state=1" "+no_of_wait_cycles=2" "+freq=50" -do "add wave -r /*; run -all" 
+# Start time: 17:21:50 on May 16,2025
+# //  Questa Sim
+# //  Version 2021.2_1 linux May 15 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.apb_slave_if(fast)
+# Loading work.file_pkg(fast)
+# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$value$plusargs'.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg::apb_slave_environment::new File: ../SV/apb_slave_environment.sv Line: 20
+# ** Warning: (vsim-PLI-3691) Expected a system task, not a system function '$value$plusargs'.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg::apb_slave_environment::new File: ../SV/apb_slave_environment.sv Line: 23
+# Loading work.my_pkg(fast)
+# Loading work.test_pkg(fast)
+# Loading work.tb_sv_unit(fast)
+# Loading work.tb(fast)
+# Loading work.apb_slave_if(fast__2)
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PREADY is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 21
+# ** Warning: (vsim-8441) Clocking block output vif.slave_cb.PSLVERR is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /file_pkg File: ../SV/apb_slave_driver.sv Line: 23
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PENABLE is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/test_lib.sv Line: 38
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSEL is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/test_lib.sv Line: 37
+# ** Warning: (vsim-8441) Clocking block output vif.master_cb.PSTRB is not legal in this
+# or another expression.
+#    Time: 0 ns  Iteration: 0  Region: /my_pkg File: ../testcases/test_lib.sv Line: 42
+# ** Warning: (vsim-8492) The -assertdebug option was specified but there are no accessible objects.
+# ** Warning: (vsim-8634) Code was not compiled with coverage options.
+# add wave -r /*
+#  run -all
+# ** Info: freq = 50.00 MHz, clk_period = 20.00 ns
+#    Time: 0 ns  Scope: tb File: ../top/tb.sv Line: 23
+# [wait_state] : 1
+# [no_of_wait_cycles] : 2
+# [gen] : executes at 0
+# [wait_state] : 1,no.of_wait_cycles : 2
+# write task start
+# || [PWRITE = 1],[PADDR = 8],[PWDATA = 798042c2],[PSTRB = f] ||
+# when reset come then this block executes
+# after reset
+# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = x] ||, at 10
+# ----------------------------------------------------------------------------------------------------------
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 0,ns = 1 at [30]
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0],[PSTRB = f] ||, at 30
+# ----------------------------------------------------------------------------------------------------------
+# ** Info: assertion passed
+#    Time: 30 ns Started: 30 ns  Scope: tb.vif.a4 File: ../SV/interface.sv Line: 91
+# ** Info: assertion passed
+#    Time: 30 ns Started: 30 ns  Scope: tb.vif.a2 File: ../SV/interface.sv Line: 71
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 1,ns = 2 at [50]
+# ** Info: assertion passed
+#    Time: 50 ns Started: 50 ns  Scope: tb.vif.a5 File: ../SV/interface.sv Line: 100
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 2,ns = 2 at [70]
+# ** Info: assertion passed
+#    Time: 70 ns Started: 70 ns  Scope: tb.vif.a6 File: ../SV/interface.sv Line: 108
+# ** Info: assertion passed
+#    Time: 70 ns Started: 70 ns  Scope: tb.vif.a9 File: ../SV/interface.sv Line: 132
+# ** Info: assertion passed
+#    Time: 70 ns Started: 70 ns  Scope: tb.vif.a5 File: ../SV/interface.sv Line: 100
+# [drv_ACCESS_WR] : [90] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 8],[PWDATA = 0],[PSLVERR = 0] ||
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 2,ns = 2 at [90]
+# ** Info: assertion passed
+#    Time: 90 ns Started: 90 ns  Scope: tb.vif.a6 File: ../SV/interface.sv Line: 108
+# ** Info: assertion passed
+#    Time: 90 ns Started: 90 ns  Scope: tb.vif.a9 File: ../SV/interface.sv Line: 132
+# ** Info: assertion passed
+#    Time: 90 ns Started: 90 ns  Scope: tb.vif.a5 File: ../SV/interface.sv Line: 100
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 110
+# ** Error (suppressible): (vsim-12030) Covergroup Builtin function call 'sample' is ignored as the covergroup object of type '/file_pkg::apb_slave_coverage::#cg_apb_slave#' is not constructed.
+#    Time: 110 ns  Iteration: 2  Region: /file_pkg::apb_slave_environment::main
+# [mon] : [110] : [count_m] = {1},|| [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 1],[PADDR = 8],[PWDATA = 798042c2],[PSLVERR = 0],[PSTRB = f] ||
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 2,ns = 0 at [110]
+# after satisfying condition
+# read task start
+# || [PWRITE = 0],[PADDR = 8],[PWDATA = 886349dd],[PSTRB = 0] ||
+# [scb] : data received from monitor at 110 count = 1
+# ** Info: [110] : PWRITE = 1,PSLVERR = 0,PADDR = 8,PWDATA = 798042c2,PRDATA = x,PSTRB = f
+#    Time: 110 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 20
+# ________________________________
+# [scb] : [110] ==> [wr_count_scb] = {1}  write operation done successfully
+# [pass_count = 0],[fail_count = 0]
+# [IDLE_t] :|| [psel = 0],[penable = 0],[pready = 1] ||, at 110
+# ----------------------------------------------------------------------------------------------------------
+# ** Info: assertion passed
+#    Time: 110 ns Started: 110 ns  Scope: tb.vif.a7 File: ../SV/interface.sv Line: 115
+# ** Info: assertion passed
+#    Time: 110 ns Started: 110 ns  Scope: tb.vif.a6 File: ../SV/interface.sv Line: 108
+# ** Info: assertion passed
+#    Time: 110 ns Started: 110 ns  Scope: tb.vif.a5 File: ../SV/interface.sv Line: 100
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 0,ns = 1 at [130]
+# [SETUP_t] : || [psel = 1],[penable = 0],[pready = 0],[PSTRB = 0] ||, at 130
+# ----------------------------------------------------------------------------------------------------------
+# ** Info: assertion passed
+#    Time: 130 ns Started: 110 ns  Scope: tb.vif.a3 File: ../SV/interface.sv Line: 84
+# ** Info: assertion passed
+#    Time: 130 ns Started: 130 ns  Scope: tb.vif.a4 File: ../SV/interface.sv Line: 91
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 1,ns = 2 at [150]
+# ** Info: assertion passed
+#    Time: 150 ns Started: 150 ns  Scope: tb.vif.a2 File: ../SV/interface.sv Line: 71
+# ** Info: assertion passed
+#    Time: 150 ns Started: 150 ns  Scope: tb.vif.a5 File: ../SV/interface.sv Line: 100
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 2,ns = 2 at [170]
+# ** Info: assertion passed
+#    Time: 170 ns Started: 170 ns  Scope: tb.vif.a6 File: ../SV/interface.sv Line: 108
+# ** Info: assertion passed
+#    Time: 170 ns Started: 170 ns  Scope: tb.vif.a9 File: ../SV/interface.sv Line: 132
+# ** Info: assertion passed
+#    Time: 170 ns Started: 170 ns  Scope: tb.vif.a2 File: ../SV/interface.sv Line: 71
+# ** Info: assertion passed
+#    Time: 170 ns Started: 170 ns  Scope: tb.vif.a5 File: ../SV/interface.sv Line: 100
+# [drv_ACCESS_RD] : [190] : || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 8],[PRDATA = 798042c2],[PSLVERR = 0] ||
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 2,ns = 2 at [190]
+# ** Info: assertion passed
+#    Time: 190 ns Started: 190 ns  Scope: tb.vif.a6 File: ../SV/interface.sv Line: 108
+# ** Info: assertion passed
+#    Time: 190 ns Started: 190 ns  Scope: tb.vif.a9 File: ../SV/interface.sv Line: 132
+# ** Info: assertion passed
+#    Time: 190 ns Started: 190 ns  Scope: tb.vif.a2 File: ../SV/interface.sv Line: 71
+# ** Info: assertion passed
+#    Time: 190 ns Started: 190 ns  Scope: tb.vif.a5 File: ../SV/interface.sv Line: 100
+# [access_t]  : || [psel = 1],[penable = 0],[pready = 1] ||, at 210
+# ** Error (suppressible): (vsim-12030) Covergroup Builtin function call 'sample' is ignored as the covergroup object of type '/file_pkg::apb_slave_coverage::#cg_apb_slave#' is not constructed.
+#    Time: 210 ns  Iteration: 2  Region: /file_pkg::apb_slave_environment::main
+# [mon] : [210] : [count_m] = {2}, || [PSEL = 1],[PENABLE = 1],[PREADY = 1],[PWRITE = 0],[PADDR = 8],[PRDATA = 798042c2],[PSLVERR = 0],[PSTRB = 0] ||
+# when reset come then this block executes
+# before state assignment
+# after state assignment ps = 2,ns = 0 at [210]
+# after satisfying condition
+# [scb] : data received from monitor at 210 count = 2
+# ** Info: [210] : PWRITE = 0,PSLVERR = 0,PADDR = 8,PWDATA = x,PRDATA = 798042c2,PSTRB = 0
+#    Time: 210 ns  Scope: file_pkg.apb_slave_transaction.display File: ../SV/apb_slave_transaction.sv Line: 20
+# ________________________________
+#################################################################################
+########################  TESTCASE PASSED  ######################################
+#################################################################################
+# ** Info: [scb] : [210]  ==> [rd_count_scb] = {1} TESTCASE PASSED at || {PADDR = 8],[actual_data = 798042c2],[expected_data = 798042c2] ||
+#    Time: 210 ns  Scope: file_pkg.slave_scoreboard.slave_scoreboard__1.run File: ../SV/slave_scoreboard.sv Line: 51
+# [pass_count = 1],[fail_count = 0]
+# ** Note: $finish    : ../SVE/test.sv(135)
+#    Time: 210 ns  Iteration: 4  Instance: /tb
+# End time: 17:21:58 on May 16,2025, Elapsed time: 0:00:08
+# Errors: 2, Warnings: 9

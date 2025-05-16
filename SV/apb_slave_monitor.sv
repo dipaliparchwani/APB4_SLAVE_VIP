@@ -13,8 +13,8 @@ class apb_slave_monitor;
   function new(virtual apb_slave_if.monitor vif,mailbox mon2scb);
     this.vif = vif;
     this.mon2scb = mon2scb;
-    trans = new();
     cov = new(trans);
+    trans = new();
   endfunction
     //run task of monitor
     task run();
@@ -22,6 +22,7 @@ class apb_slave_monitor;
 	@(posedge vif.monitor_cb);
 	//when write request then it sample below signals
 	if(vif.monitor_cb.PWRITE && vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin //----when write request than executes
+	  trans = new();
           trans.PWDATA = vif.monitor_cb.PWDATA;
        	  trans.PSLVERR = vif.monitor_cb.PSLVERR;
 	  trans.PADDR = vif.monitor_cb.PADDR;
@@ -35,7 +36,8 @@ class apb_slave_monitor;
 	end
          
 	//when read request then it sample below signals
-	else if(!vif.monitor_cb.PWRITE && vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin  //----when read request than executes
+	else if(!vif.monitor_cb.PWRITE && vif.monitor_cb.PSEL && vif.monitor_cb.PENABLE && vif.monitor_cb.PREADY) begin  //----when read request than executes   
+	  trans = new();
        	  trans.PSLVERR = vif.monitor_cb.PSLVERR;
 	  trans.PADDR = vif.monitor_cb.PADDR; 
 	  trans.PRDATA = vif.monitor_cb.PRDATA;
